@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Xmotors | Reveulto</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --main-red: #fd052f;
+      --dark-bg: #121212;
+      --light-gray: #ccc;
+      --border-radius: 12px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Outfit', sans-serif;
+      background: var(--dark-bg);
+      color: #fff;
+      line-height: 1.6;
+    }
+
+    header {
+      background: var(--main-red);
+      text-align: center;
+      padding: 40px 20px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+    }
+
+    header h1 {
+      font-size: 3rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: auto;
+      padding: 40px 20px;
+    }
+
+    .main-image img {
+      width: 100%;
+      border-radius: var(--border-radius);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .main-image img:hover {
+      transform: scale(1.03);
+      box-shadow: 0 6px 30px rgba(0, 0, 0, 0.7);
+    }
+
+    section {
+      margin-top: 50px;
+      background: #1e1e1e;
+      padding: 30px;
+      border-radius: var(--border-radius);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    }
+
+    h2 {
+      color: var(--main-red);
+      margin-bottom: 20px;
+      font-size: 2rem;
+    }
+
+    ul {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    li {
+      padding: 10px 0;
+      border-bottom: 1px solid #333;
+      transition: all 0.3s ease;
+    }
+
+    li:hover {
+      padding-left: 10px;
+      color: var(--main-red);
+    }
+
+    .price p {
+      font-size: 1.5rem;
+      color: #f55;
+    }
+
+    .gallery h2 {
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+    .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    }
+
+    .gallery-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 12px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+    transition: transform 0.3s ease;
+    }
+
+    .gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease, filter 0.3s ease;
+    }
+
+    .gallery-item:hover img {
+    transform: scale(1.05);
+    filter: brightness(0.85);
+    }
+
+
+    .close {
+      position: absolute;
+      top: 30px;
+      right: 40px;
+      font-size: 3rem;
+      color: white;
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+
+    button {
+      margin-top: 40px;
+      padding: 14px 30px;
+      font-size: 1rem;
+      background: var(--main-red);
+      color: white;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background: #e10429;
+      transform: scale(1.05);
+    }
+
+    a {
+      color: var(--main-red);
+      text-decoration: none;
+    }
+
+    .gallery-modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        background-color: rgba(0, 0, 0, 0.85);
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+        animation: fadeIn 0.4s ease;
+        padding: 20px;
+        }
+
+        .gallery-modal img {
+        max-width: 90%;
+        max-height: 80vh;
+        border-radius: 16px;
+        box-shadow: 0 12px 25px rgba(0, 0, 0, 0.5);
+        object-fit: contain;
+        animation: zoomIn 0.3s ease-in-out;
+        }
+
+        .gallery-modal .close {
+        position: absolute;
+        top: 25px;
+        right: 35px;
+        font-size: 3rem;
+        color: #fff;
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        transition: transform 0.2s ease;
+        }
+
+        .gallery-modal .close:hover {
+        transform: scale(1.2);
+        color: #fd052f;
+        }
+
+        /* Optional subtle zoom animation */
+        @keyframes zoomIn {
+        0% {
+            transform: scale(0.8);
+            opacity: 0;
+        }
+        100% {
+            transform: scale(1);
+            opacity: 1;
+        }
+        }
+
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Reveulto</h1>
+  </header>
+
+  <div class="container">
+    <section class="main-image">
+      <img src="https://vehicle-images.dealerinspire.com/2958-11000617/WP0AB2Y10SSA40435/3cb08ed81814a8c075ca53cb734b1273.jpg" alt="Porsche Taycan Front View">
+    </section>
+
+    <section class="specs">
+      <h2>Specifications</h2>
+      <ul>
+        <li>Engine: 6.5L Naturally Aspirated V12 + 3 Electric Motors</li>
+        <li>Combined Power Output: 1,015 hp</li>
+        <li>0-100 km/h: 2.5 seconds</li>
+        <li>Top Speed: 350+ km/h (217+ mph)</li>
+        <li>Transmission: 8-Speed Dual-Clutch Automatic</li>
+        <li>Drivetrain: All-Wheel Drive (AWD)</li>
+        <li>Battery: 3.8 kWh Lithium-ion (Plug-in Hybrid)</li>
+        <li>Chassis: Carbon Fiber Monocoque</li>
+      </ul>
+    </section>
+    
+    <section class="price">
+      <h2>Price</h2>
+      <p>Starting at: $604,000</p>
+    </section>
+    
+    <section class="gallery">
+        <h2>Gallery</h2>
+        <div class="gallery-grid">
+          <div class="gallery-item">
+            <img src="https://i0.wp.com/gaycarboys.com/wp-content/uploads/2020/06/PORSCHE-TAYCAN-side-scaled.jpg?fit=2560%2C1440&ssl=1" alt="Side View" onclick="openModal(this)">
+          </div>
+          <div class="gallery-item">
+            <img src="https://i.pinimg.com/736x/21/33/00/213300c9bd5acbe743a2ff2619d9b919.jpg" alt="Interior View" onclick="openModal(this)">
+          </div>
+        </div>
+      </section>
+      
+
+    <button onclick="scrollToTop()">⬆</button>
+  </div>
+
+  <!-- Modal -->
+  <div class="gallery-modal" id="galleryModal">
+    <button class="close" onclick="closeModal()">×</button>
+    <img id="modalImage" src="https://i0.wp.com/gaycarboys.com/wp-content/uploads/2020/06/PORSCHE-TAYCAN-side-scaled.jpg?fit=2560%2C1440&ssl=1" alt="Enlarged Image">
+  </div>
+  
+
+  <script>
+    function openModal(imgElement) {
+      document.getElementById("galleryModal").style.display = "flex";
+      document.getElementById("modalImage").src = imgElement.src;
+    }
+
+    function closeModal() {
+      document.getElementById("galleryModal").style.display = "none";
+    }
+
+    window.onclick = function(event) {
+      const modal = document.getElementById("galleryModal");
+      if (event.target === modal) {
+        closeModal();
+      }
+    }
+
+    function scrollToTop() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  </script>
+
+</body>
+</html>
