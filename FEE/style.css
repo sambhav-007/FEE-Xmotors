@@ -169,7 +169,7 @@ header {
     min-height:640px;
     display:flex;
     align-items:center;
-    background-image:url("img/Background-home.png");
+    background-image:url("img/3WXwyFu-black-carbon-wallpaper.jpg");
     background-size:cover;
     background-position:center,left;
 }
@@ -1053,6 +1053,104 @@ footer .copyright {
     position: fixed;
     top: 80px;
     right: 20px;
+    background: #1a1a1a;
+    color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    z-index: 9999; /* Increased to ensure it's above everything */
+    width: 300px;
+    max-height: 80vh;
+    overflow-y: auto;
+    display: none;
+    border: 1px solid #333;
+}
+
+.cart-popup h4 {
+    color: #fd052f;
+    margin-bottom: 15px;
+}
+
+.cart-popup hr {
+    border-color: #333;
+    margin: 10px 0;
+}
+
+.cart-popup p {
+    margin: 10px 0;
+    font-weight: bold;
+}
+
+.cart-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+}
+
+.clear-cart-btn {
+    background: #666;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.buy-now-btn {
+    background: linear-gradient(to right, #fd052f, #e60023);
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 14px;
+    margin-left: 10px;
+}
+
+.buy-now-btn:hover {
+    background: linear-gradient(to right, #e60023, #cc001f);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(253, 5, 47, 0.3);
+}
+
+.clear-cart-btn:hover {
+    background: #555;
+}
+
+.buy-now-btn:hover {
+    background: linear-gradient(to right, #e60023, #cc001f);
+    /* Existing styles remain */
+}
+
+.cart-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+}
+
+.clear-cart-btn {
+    background: #666;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.buy-now-btn {
+    background: linear-gradient(to right, #fd052f, #e60023);
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    position: fixed;
+    top: 80px;
+    right: 20px;
     background-color: rgba(0, 0, 0, 0.85);
     color: whitesmoke;
     padding: 20px;
@@ -1204,8 +1302,77 @@ footer .copyright {
     to { transform: translateY(0); opacity: 1; }
   }
   
-  @keyframes fadeIn {
+@keyframes fadeIn {
     from { opacity: 0; }
     to { opacity: 1; }
-  }
+}
+
+/* Checkout Page Styles */
+.checkout-container {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+    color: #fff;
+}
+
+.checkout-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.checkout-form {
+    background: #1a1a1a;
+    padding: 2rem;
+    border-radius: 8px;
+    border: 1px solid #333;
+}
+
+.order-summary {
+    background: #1a1a1a;
+    padding: 2rem;
+    border-radius: 8px;
+    border: 1px solid #333;
+    align-self: start;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #fff;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #333;
+    border-radius: 4px;
+    background: #2a2a2a;
+    color: #fff;
+}
+
+.form-row {
+    display: flex;
+    gap: 1rem;
+}
+
+.form-row .form-group {
+    flex: 1;
+}
+
+.payment-methods {
+    margin: 1.5rem 0;
+}
+
+.payment-option {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.5rem;
   

@@ -50,19 +50,17 @@
             <li><a href="#test-drive">Test Drive</a></li>
             <li>
               <a href="#" id="cart-icon">
-                <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 4h1.5L9 16m0 0h8m-8 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm8 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm-8.5-3h9.25L19 7H7.312"/>
-                </svg>
-                <span id="cart-count" style="background: red; color: white; border-radius: 50%; padding: 2px 5px; font-size: 12px;">0</span>
+                <i class="fa-solid fa-cart-shopping"></i>
+                <span id="cart-count">0</span>
               </a>
-            </li> 
+            </li>
           </ul>
       
           <!-- Login/Register -->
-          <div class="log-reg" style="display: flex; gap: 1px; align-items: center;">
-            <a href="register.html" class="btn btn-outline">Register</a>
-            <a href="login.html" class="btn btn-outline">Login</a>
-          </div>
+          <div class="log-reg">
+                <a href="register.html" class="btn btn-outline">Register</a>
+                <a href="login.html" class="btn btn-outline">Login</a>
+            </div>
         </div>
     </header>
       
@@ -72,7 +70,7 @@
             <i><p>Explore our diverse inventory, enjoy exceptional service,<br>and let our expert team help you find the perfect car to fit your lifestyle.</p></i><br><br>
             <button class="match-btn-glow" onclick="openMatchFinder()" style="margin-left:145px;">Find Your Perfect Match</button>
         </div>
-    </section><br><br>
+    </section>
     <div class="chat-bubble" id="chatBubble">
         <i>🚗</i>
     </div>
@@ -113,11 +111,11 @@
           </select>
     
           <label>Budget Range:</label>
-          <select required>
+            <select required>
             <option disabled selected>Select range</option>
-            <option>Under ₹41,50,000</option>
-            <option>₹41,50,000 - ₹83,00,000</option>
-            <option>Above ₹83,00,000</option>
+            <option>Below ₹1 crore</option>
+            <option>₹1-10 crore</option>
+            <option>Above ₹10 crore</option>
           </select>
     
           <label>Car Model</label>
@@ -371,5 +369,7 @@
   </footer>
   
 <script src="main.js"></script>
+</body>
+</html> src="main.js"></script>
 </body>
 </html>
