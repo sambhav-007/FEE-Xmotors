@@ -6,6 +6,25 @@
     <title>Xmotors</title>
     <!-- link css -->
     <link rel="stylesheet" href="style.css">
+    <style>
+      /* Add just the hover effect styles */
+      .navbar a {
+        position: relative;
+      }
+      .navbar a::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: #fd052f;
+        transition: width 0.3s;
+      }
+      .navbar a:hover::after {
+        width: 100%;
+      }
+    </style>
     <!-- link font-awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer">
     <!-- Swiper CSS -->
@@ -31,14 +50,16 @@
             <li><a href="#test-drive">Test Drive</a></li>
             <li>
               <a href="#" id="cart-icon">
-                <i class="fa-solid fa-cart-shopping"></i>
-                <span id="cart-count">0</span>
+                <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 4h1.5L9 16m0 0h8m-8 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm8 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm-8.5-3h9.25L19 7H7.312"/>
+                </svg>
+                <span id="cart-count" style="background: red; color: white; border-radius: 50%; padding: 2px 5px; font-size: 12px;">0</span>
               </a>
-            </li>
+            </li> 
           </ul>
       
           <!-- Login/Register -->
-          <div class="log-reg">
+          <div class="log-reg" style="display: flex; gap: 1px; align-items: center;">
             <a href="register.html" class="btn btn-outline">Register</a>
             <a href="login.html" class="btn btn-outline">Login</a>
           </div>
@@ -94,9 +115,9 @@
           <label>Budget Range:</label>
           <select required>
             <option disabled selected>Select range</option>
-            <option>Under $50,000</option>
-            <option>$50,000 - $100,000</option>
-            <option>Above $100,000</option>
+            <option>Under ₹41,50,000</option>
+            <option>₹41,50,000 - ₹83,00,000</option>
+            <option>Above ₹83,00,000</option>
           </select>
     
           <label>Car Model</label>
@@ -121,35 +142,35 @@
       </div>
       <div class="cars-container">
         <div class="car-box">
-          <img src="img/car1.jpg" alt="Porsche Taycan">
+          <a href="porshetaycan.html"><img src="img/car1.jpg" alt="Porsche Taycan"></a>
           <h2><a href="porshetaycan.html">PORSCHE TAYCAN</a></h2>
         </div>
         <div class="car-box">
-          <img src="img/car2.jpg" alt="Audi A4">
+          <a href="audietronGT.html"><img src="img/car2.jpg" alt="Audi A4"></a>
           <h2><a href="audietronGT.html">AUDI e-tron GT</a></h2>
         </div>
         <div class="car-box">
-          <img src="img/car3.jpg" alt="Bugatti Bolide">
+          <a href="buggatitourbillon.html"><img src="img/car3.jpg" alt="Bugatti Bolide"></a>
           <h2><a href="buggatitourbillon.html">BUGATTI TOURBILLON</a></h2>
         </div>
         <div class="car-box">
-          <img src="img/car4.jpg" alt="Aventador">
+          <a href="reveulto.html"><img src="img/car4.jpg" alt="Aventador"></a>
           <h2><a href="reveulto.html">REVUELTO</a></h2>
         </div>
         <div class="car-box">
-          <img src="img/car5.jpg" alt="BMW XM">
+          <a href="koenigsegg.html"><img src="img/car5.jpg" alt="BMW XM"></a>
           <h2><a href="koenigsegg.html">KOENIGSEGG REGERA</a></h2>
         </div>
         <div class="car-box">
-          <img src="img/car6.jpg" alt="Dodge Demon">
+          <a href="maserati.html"><img src="img/car6.jpg" alt="Dodge Demon"></a>
           <h2><a href="maserati.html">MASERATI GRANTURISMO</a></h2>
         </div>
         <div class="car-box">
-          <img src="img/car7.jpg" alt="Ferrari SF90">
+          <a href="ferrari.html"><img src="img/car7.jpg" alt="Ferrari SF90"></a>
           <h2><a href="ferrari.html">FERRARI SF90</a></h2>
         </div>
         <div class="car-box">
-          <img src="img/car8.jpg" alt="McLaren 720S">
+          <a href="mclaren.html"><img src="img/car8.jpg" alt="McLaren 720S"></a>
           <h2><a href="mclaren.html">MCLAREN 720S</a></h2>
         </div>
       </div>
@@ -208,7 +229,7 @@
         <div class="box">
           <img src="img/part1.png" alt="Engine" class="part-img">
           <h3>Engine</h3>
-          <span>$39,000</span>
+          <span>₹32,37,000</span>
           <div class="reviews"><i class="fa-solid fa-star"></i> (5 reviews)</div>
           <div class="btn-wrap">
             <a href="#" class="btn" id="add-to-cart" data-name="Engine" data-price="39000">Add to Cart</a>
@@ -219,7 +240,7 @@
         <div class="box">
           <img src="img/part2.png" alt="Gear Box" class="part-img">
           <h3>Gear Box</h3>
-          <span>$399.99</span>
+          <span>₹33,199.17</span>
           <div class="reviews"><i class="fa-solid fa-star"></i> (5 reviews)</div>
           <div class="btn-wrap">
             <a href="#" class="btn" id="add-to-cart" data-name="Gear Box" data-price="399">Add to Cart</a>
@@ -230,7 +251,7 @@
         <div class="box">
           <img src="img/part3.png" alt="Auto Spare Parts" class="part-img">
           <h3>Auto Spare Parts</h3>
-          <span>$99.99 - $299.99</span>
+          <span>₹8,299.17 - ₹24,899.17</span>
           <div class="reviews"><i class="fa-solid fa-star"></i> (5 reviews)</div>
           <div class="btn-wrap">
             <a href="#" class="btn" id="add-to-cart" data-name="Auto Spare Parts" data-price="299">Add to Cart</a>
@@ -241,7 +262,7 @@
         <div class="box">
           <img src="img/part4.png" alt="Air Filter" class="part-img">
           <h3>Air Filter</h3>
-          <span>$299.99</span>
+          <span>₹24,899.17</span>
           <div class="reviews"><i class="fa-solid fa-star"></i> (5 reviews)</div>
           <div class="btn-wrap">
             <a href="#" class="btn" id="add-to-cart" data-name="Air Filter" data-price="299">Add to Cart</a>
@@ -252,7 +273,7 @@
         <div class="box">
           <img src="img/part5.png" alt="Car Alternator" class="part-img">
           <h3>Car Alternator</h3>
-          <span>$999.99</span>
+          <span>₹82,999.17</span>
           <div class="reviews"><i class="fa-solid fa-star"></i> (5 reviews)</div>
           <div class="btn-wrap">
             <a href="#" class="btn" id="add-to-cart" data-name="Car Alternator" data-price="999">Add to Cart</a>
@@ -263,7 +284,7 @@
         <div class="box">
           <img src="img/part6.png" alt="MRF Tyre" class="part-img">
           <h3>MRF Tyre</h3>
-          <span>$399.99</span>
+          <span>₹33,199.17</span>
           <div class="reviews"><i class="fa-solid fa-star"></i> (5 reviews)</div>
           <div class="btn-wrap">
             <a href="#" class="btn" id="add-to-cart" data-name="MRF Tyre" data-price="399">Add to Cart</a>
