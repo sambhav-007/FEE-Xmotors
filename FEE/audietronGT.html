@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>X Motors | Audi e-tron GT</title>
-    <style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Xmotors | Audi e-tron GT</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
+  <style>
     :root {
       --main-red: #fd052f;
       --dark-bg: #121212;
@@ -196,7 +197,6 @@
         color: #fd052f;
         }
 
-        /* Optional subtle zoom animation */
         @keyframes zoomIn {
         0% {
             transform: scale(0.8);
@@ -208,81 +208,84 @@
         }
         }
 
-    </style>
+  </style>
 </head>
 <body>
 
-    <!-- Header Section -->
-    <header>
-        <h1>Audi e-tron GT</h1>
-    </header>
+  <header>
+    <h1>Audi e-tron GT</h1>
+  </header>
 
-    <!-- Main Content -->
-    <div class="container">
+  <div class="container">
+    <section class="main-image">
+      <img src="img/img7.2.jpg" alt="Audi e-tron GT Front View">
+    </section>
 
-        <!-- Main Image -->
-        <section class="main-image">
-            <img src="https://cdn.jdpower.com/JDP_2023%20Audi%20A4%20Prestige%2045%20TFSI%20Red%20Front%20Quarter%20View.jpg" alt="Audi A4 Front View">
-        </section>
-
-        <!-- Specifications Section -->
-        <section class="specs">
-            <h2>Specifications</h2>
-            <ul>
-              <li>Powertrain: Dual Electric Motors (Quattro All-Wheel Drive)</li>
-              <li>Battery Capacity: 93.4 kWh</li>
-              <li>Power Output: 530 hp (Standard) / up to 637 hp (RS e-tron GT in Boost mode)</li>
-              <li>0-100 km/h: 4.1 seconds (Standard) / 3.3 seconds (RS)</li>
-              <li>Top Speed: 245 km/h (Standard) / 250 km/h (RS)</li>
-              <li>Range: Up to 488 km (WLTP)</li>
-              <li>Charging: 270 kW DC fast charging (5% to 80% in ~23 minutes)</li>
-            </ul>
-          </section>
-          
-          <section class="price">
-            <h2>Price</h2>
-            <p>Starting at: ₹88.40 lakh (Standard) <br> ₹1.19 crore (RS e-tron GT)</p>
-          </section>
-          
-
-        <!-- Gallery Section -->
-        <section class="gallery">
-            <h2>Gallery</h2>
-            <img src="https://pictures.dealer.com/f/fletcherjonesaudiaoa/0909/8db17c718dd84ef31eb795ae5f368d97x.jpg" alt="Audi A4 Interior View" onclick="openModal(this)">
-            <img src="https://cdn.jdpower.com/JDP_2023%20Audi%20A4%20Prestige%2045%20TFSI%20Red%20Rear%20Quarter%20View.jpg" alt="Audi A4 Rear View" onclick="openModal(this)">
-        </section>
-
-        <button onclick="scrollToTop()">⬆</button>
-
-    </div>
-
-    <div class="gallery-modal" id="galleryModal">
-        <button class="close" onclick="closeModal()">×</button>
-        <img id="modalImage" src="https://i0.wp.com/gaycarboys.com/wp-content/uploads/2020/06/PORSCHE-TAYCAN-side-scaled.jpg?fit=2560%2C1440&ssl=1" alt="Enlarged Image">
-      </div>
+    <section class="specs">
+      <h2>Specifications</h2>
+      <ul>
+        <li>Powertrain: Dual Electric Motors (Quattro All-Wheel Drive)</li>
+        <li>Combined Power Output: 469 hp (up to 522 hp in boost mode)</li>
+        <li>Torque: 630 Nm (464 lb-ft)</li>
+        <li>Transmission: 2-Speed Automatic (rear axle)</li>
+        <li>0-100 km/h: 4.1 seconds (Boost mode)</li>
+        <li>Top Speed: 245 km/h (152 mph)</li>
+        <li>Battery Capacity: 93.4 kWh (Net usable ~85 kWh)</li>
+        <li>Range: Up to 488 km (WLTP)</li>
+        <li>Charging: 270 kW DC Fast Charging (5% to 80% in ~22.5 minutes)</li>
+        <li>Drive Type: All-Wheel Drive (Quattro)</li>
+        <li>Chassis: Adaptive Air Suspension with Dynamic Steering</li>
+      </ul>
+    </section>
+    
+    <section class="price">
+      <h2>Price</h2>
+      <p>Starting at: $106,500</p>
+    </section>
+    
+    <section class="gallery">
+        <h2>Gallery</h2>
+        <div class="gallery-grid">
+          <div class="gallery-item">
+            <img src="img/img7.1.jpg" alt="Side View" onclick="openModal(this)">
+          </div>
+          <div class="gallery-item">
+            <img src="img/img7.jpg" alt="Interior View" onclick="openModal(this)">
+          </div>
+        </div>
+      </section>
       
-    
-      <script>
-        function openModal(imgElement) {
-          document.getElementById("galleryModal").style.display = "flex";
-          document.getElementById("modalImage").src = imgElement.src;
-        }
-    
-        function closeModal() {
-          document.getElementById("galleryModal").style.display = "none";
-        }
-    
-        window.onclick = function(event) {
-          const modal = document.getElementById("galleryModal");
-          if (event.target === modal) {
-            closeModal();
-          }
-        }
-    
-        function scrollToTop() {
-          window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-      </script>
+
+    <button onclick="scrollToTop()">⬆</button>
+  </div>
+
+  <div class="gallery-modal" id="galleryModal">
+    <button class="close" onclick="closeModal()">×</button>
+    <img id="modalImage" src="https://i0.wp.com/gaycarboys.com/wp-content/uploads/2020/06/PORSCHE-TAYCAN-side-scaled.jpg?fit=2560%2C1440&ssl=1" alt="Enlarged Image">
+  </div>
+  
+
+  <script>
+    function openModal(imgElement) {
+      document.getElementById("galleryModal").style.display = "flex";
+      document.getElementById("modalImage").src = imgElement.src;
+    }
+
+    function closeModal() {
+      document.getElementById("galleryModal").style.display = "none";
+    }
+
+    window.onclick = function(event) {
+      const modal = document.getElementById("galleryModal");
+      if (event.target === modal) {
+        closeModal();
+      }
+    }
+
+    function scrollToTop() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  </script>
 
 </body>
 </html>
