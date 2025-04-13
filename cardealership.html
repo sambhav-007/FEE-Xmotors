@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Xmotors</title>
+    <!-- link css -->
+    <link rel="stylesheet" href="style.css">
+    <style>
+      /* Add just the hover effect styles */
+      .navbar a {
+        position: relative;
+      }
+      .navbar a::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: #fd052f;
+        transition: width 0.3s;
+      }
+      .navbar a:hover::after {
+        width: 100%;
+      }
+    </style>
+    <!-- link font-awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+</head>
+<body>
+    <!-- Loader -->
+    <div id="loader" class="loader">
+        <div class="spinner"></div>
+    </div>
+    <!-- navbar --> 
+    <header>
+        <div class="nav container">
+          <a href="#" class="logo">X<span>motors</span></a>
+      
+          <!-- Navbar Menu -->
+          <ul class="navbar">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#cars">Cars</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#parts">Parts</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="#test-drive">Test Drive</a></li>
+            <li>
+              <a href="#" id="cart-icon">
+                <i class="fa-solid fa-cart-shopping"></i>
+                <span id="cart-count">0</span>
+              </a>
+            </li>
+          </ul>
+      
+          <!-- Login/Register -->
+          <div class="log-reg">
+                <a href="register.html" class="btn btn-outline">Register</a>
+                <a href="login.html" class="btn btn-outline">Login</a>
+            </div>
+        </div>
+    </header>
+      
+    <section class="home" id="home">
+        <div class="home-text">
+            <h1><span style="font-size: 60px;  box-shadow: 0 8px 16px rgba(253, 5, 47, 0.3);">X</span>motors</h1><br>
+            <i><p>Explore our diverse inventory, enjoy exceptional service,<br>and let our expert team help you find the perfect car to fit your lifestyle.</p></i><br><br>
+            <button class="match-btn-glow" onclick="openMatchFinder()" style="margin-left:145px;">Find Your Perfect Match</button>
+        </div>
+    </section>
+    <div class="chat-bubble" id="chatBubble">
+        <i>🚗</i>
+    </div>
+    
+    <!-- Chatbot Container -->
+    <div class="chat-container hidden" id="chatContainer">
+        <div class="chat-header" id="chatHeader">
+            <h3>🚗 Xmotors Assistant</h3>
+            <span id="closeChat" style="cursor: pointer;">✖</span>
+        </div>
+        <div class="chat-body" id="chatBody">
+            <div class="bot-message chat-message">
+                <span class="message-emoji">🚗</span> Hello! Welcome to Xmotors. How can I help you today?
+            </div>
+        </div>
+        <div class="chat-footer">
+            <input type="text" class="chat-input" id="chatInput" placeholder="Type your message here...">
+            <button class="chat-send" id="sendButton">Send</button>
+        </div>
+    </div>
+    
+    <div id="matchFinderPopup" class="match-popup">
+      <div class="match-content">
+        <span class="close-btn" onclick="closeMatchFinder()">&times;</span>
+        <h2>Match Finder</h2>
+        <form id="matchQuizForm">
+          <label>Preferred Brand:</label>
+          <select required>
+            <option disabled selected>Select one</option>
+            <option>Porsche</option>
+            <option>Buggati</option>
+            <option>mclaren</option>
+            <option>Audi</option>
+            <option>Lamborghini</option>
+            <option>Koenigsegg</option>
+            <option>Maserati</option>
+            <option>Ferrari</option>
+          </select>
+    
+          <label>Budget Range:</label>
+            <select required>
+            <option disabled selected>Select range</option>
+            <option>Below ₹1 crore</option>
+            <option>₹1-10 crore</option>
+            <option>Above ₹10 crore</option>
+          </select>
+    
+          <label>Car Model</label>
+          <select required>
+            <option disabled selected>Select type</option>
+            <option></option>
+            <option>SUV</option>
+            <option>Sports</option>
+            <option>Electric</option>
+          </select>
+    
+          <button type="submit" class="btn">Find My Match</button>
+        </form>
+      </div>
+    </div>
+    
+    <!--cars-section-->
+    <section class="cars" id="cars">
+      <div class="heading">
+        <span>All Cars</span>
+        <h1>We have all types of cars</h1>
+      </div>
+      <div class="cars-container">
+        <div class="car-box">
+          <a href="porshetaycan.html"><img src="img/car1.jpg" alt="Porsche Taycan"></a>
+          <h2><a href="porshetaycan.html">PORSCHE TAYCAN</a></h2>
+        </div>
+        <div class="car-box">
+          <a href="audietronGT.html"><img src="img/car2.jpg" alt="Audi A4"></a>
+          <h2><a href="audietronGT.html">AUDI e-tron GT</a></h2>
+        </div>
+        <div class="car-box">
+          <a href="buggatitourbillon.html"><img src="img/car3.jpg" alt="Bugatti Bolide"></a>
+          <h2><a href="buggatitourbillon.html">BUGATTI TOURBILLON</a></h2>
+        </div>
+        <div class="car-box">
+          <a href="reveulto.html"><img src="img/car4.jpg" alt="Aventador"></a>
+          <h2><a href="reveulto.html">REVUELTO</a></h2>
+        </div>
+        <div class="car-box">
+          <a href="koenigsegg.html"><img src="img/car5.jpg" alt="BMW XM"></a>
+          <h2><a href="koenigsegg.html">KOENIGSEGG REGERA</a></h2>
+        </div>
+        <div class="car-box">
+          <a href="maserati.html"><img src="img/car6.jpg" alt="Dodge Demon"></a>
+          <h2><a href="maserati.html">MASERATI GRANTURISMO</a></h2>
+        </div>
+        <div class="car-box">
+          <a href="ferrari.html"><img src="img/car7.jpg" alt="Ferrari SF90"></a>
+          <h2><a href="ferrari.html">FERRARI SF90</a></h2>
+        </div>
+        <div class="car-box">
+          <a href="mclaren.html"><img src="img/car8.jpg" alt="McLaren 720S"></a>
+          <h2><a href="mclaren.html">MCLAREN 720S</a></h2>
+        </div>
+      </div>
+    </section>
+    
+    <!--About-section-->
+    <section class="about" id="about">
+      <div class="about-img">
+        <img src="img/about.png" alt="About Xmotors">
+      </div>
+      <div class="about-text">
+        <span>About Us</span>
+        <h2>Affordable Prices &<br>Top-Quality Cars</h2>
+        <p>
+          At <b>Xmotors</b>, we connect you with your ideal vehicle through exceptional service and a diverse inventory of new and pre-owned cars. Our dedicated team ensures a seamless buying experience, while our expert technicians provide top-notch maintenance and support.
+        </p>
+      </div>
+    </section>
+    <section class="why-choose-us" id="why-choose-us">
+      <div class="heading">
+        <span>Why Choose Us</span>
+        <h2>Experience the Xmotors Advantage</h2>
+      </div>
+      <div class="choose-container">
+        <div class="choose-box">
+          <i class="fas fa-car-side"></i>
+          <h3>Wide Car Selection</h3>
+          <p>From luxury to budget, we offer a diverse range of cars that fit every lifestyle and budget.</p>
+        </div>
+        <div class="choose-box">
+          <i class="fas fa-tools"></i>
+          <h3>Expert Maintenance</h3>
+          <p>Certified technicians ensure your car stays in top condition with reliable servicing.</p>
+        </div>
+        <div class="choose-box">
+          <i class="fas fa-handshake"></i>
+          <h3>Trusted Service</h3>
+          <p>We’re known for transparent deals, honest advice, and customer-first values.</p>
+        </div>
+        <div class="choose-box">
+          <i class="fas fa-tags"></i>
+          <h3>Best Price Guarantee</h3>
+          <p>We offer competitive prices without compromising on quality or service.</p>
+        </div>
+      </div>
+    </section>
+
+    <!--parts-section-->
+    <section class="parts" id="parts">
+      <div class="heading">
+        <h1><span>Parts Shop</span></h1><br><br><br>
+      </div>
+    
+      <div class="parts-container">
+        <!-- Box 1 -->
+        <div class="box">
+          <img src="img/part1.png" alt="Engine" class="part-img">
+          <h3>Engine</h3>
+          <span>₹32,37,000</span>
+          <div class="reviews"><i class="fa-solid fa-star"></i> (5 reviews)</div>
+          <div class="btn-wrap">
+            <a href="#" class="btn" id="add-to-cart" data-name="Engine" data-price="39000">Add to Cart</a>
+          </div>
+        </div>
+    
+        <!-- Box 2 -->
+        <div class="box">
+          <img src="img/part2.png" alt="Gear Box" class="part-img">
+          <h3>Gear Box</h3>
+          <span>₹33,199.17</span>
+          <div class="reviews"><i class="fa-solid fa-star"></i> (5 reviews)</div>
+          <div class="btn-wrap">
+            <a href="#" class="btn" id="add-to-cart" data-name="Gear Box" data-price="399">Add to Cart</a>
+          </div>
+        </div>
+    
+        <!-- Box 3 -->
+        <div class="box">
+          <img src="img/part3.png" alt="Auto Spare Parts" class="part-img">
+          <h3>Auto Spare Parts</h3>
+          <span>₹8,299.17 - ₹24,899.17</span>
+          <div class="reviews"><i class="fa-solid fa-star"></i> (5 reviews)</div>
+          <div class="btn-wrap">
+            <a href="#" class="btn" id="add-to-cart" data-name="Auto Spare Parts" data-price="299">Add to Cart</a>
+          </div>
+        </div>
+    
+        <!-- Box 4 -->
+        <div class="box">
+          <img src="img/part4.png" alt="Air Filter" class="part-img">
+          <h3>Air Filter</h3>
+          <span>₹24,899.17</span>
+          <div class="reviews"><i class="fa-solid fa-star"></i> (5 reviews)</div>
+          <div class="btn-wrap">
+            <a href="#" class="btn" id="add-to-cart" data-name="Air Filter" data-price="299">Add to Cart</a>
+          </div>
+        </div>
+    
+        <!-- Box 5 -->
+        <div class="box">
+          <img src="img/part5.png" alt="Car Alternator" class="part-img">
+          <h3>Car Alternator</h3>
+          <span>₹82,999.17</span>
+          <div class="reviews"><i class="fa-solid fa-star"></i> (5 reviews)</div>
+          <div class="btn-wrap">
+            <a href="#" class="btn" id="add-to-cart" data-name="Car Alternator" data-price="999">Add to Cart</a>
+          </div>
+        </div>
+    
+        <!-- Box 6 -->
+        <div class="box">
+          <img src="img/part6.png" alt="MRF Tyre" class="part-img">
+          <h3>MRF Tyre</h3>
+          <span>₹33,199.17</span>
+          <div class="reviews"><i class="fa-solid fa-star"></i> (5 reviews)</div>
+          <div class="btn-wrap">
+            <a href="#" class="btn" id="add-to-cart" data-name="MRF Tyre" data-price="399">Add to Cart</a>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+
+  <section class="test-drive" id="test-drive">
+    <div class="heading">
+      <span>Book Now</span>
+      <h1>Book a Test Drive</h1>
+    </div>
+    <form class="test-drive-form" onsubmit="handleBooking(event)">
+      <input type="text" placeholder="Full Name" required>
+      <input type="email" placeholder="Email Address" required>
+      <input type="tel" placeholder="Phone Number" required>
+      <select required>
+        <option value="" disabled selected>Select Car Model</option>
+        <option value="Porsche Taycan">Porsche Taycan</option>
+        <option value="Audi e-tron GT">Audi e-tron GT</option>
+        <option value="Bugatti TOURBILLON">Bugatti TOURBILLON</option>
+        <option value="Reveulto">Reveulto</option>
+        <option value="Koenigsegg Regera">Koenigsegg Regera</option>
+        <option value="Maserati GranTurismo">Maserati GranTurismo</option>
+        <option value="Ferrari SF90">Ferrari SF90</option>
+        <option value="Mclaren 720S">Mclaren 720S</option>
+      </select>
+      <input type="date" required>
+      <input type="time" required>
+      <button type="submit">Confirm Booking</button>
+    </form>
+  </section>
+
+  
+<footer>
+    <div class="footer-container">
+      <!-- Logo & Socials -->
+      <div class="footer-box">
+        <a href="#" class="logo">
+          <span style="color:#fd052f;"></span style="color:white;">X<span>motors</span>
+        </a>
+        <p>Your trusted destination for luxury and performance vehicles.</p>
+        <div class="social">
+          <a href="https://www.facebook.com/xmotorsNZ/" class="fa-brands fa-facebook-f"></a>
+          <a href="https://www.instagram.com/xmotors.me/" class="fa-brands fa-instagram"></a>
+          <a href="#" class="fa-brands fa-x-twitter"></a>
+        </div>
+      </div>
+  
+      <!-- Quick Links -->
+      <div class="footer-box">
+        <h3>Quick Links</h3>
+        <a href="#home">Home</a>
+        <a href="#cars">Cars</a>
+        <a href="#parts">Parts</a>
+        <a href="#about">About</a>
+        <a href="#test-drive">Test Drive</a>
+      </div>
+  
+      <!-- Legal Info -->
+      <div class="footer-box">
+        <h3>Legal</h3>
+        <a href="#">Privacy Policy</a>
+        <a href="#">Cookie Policy</a>
+        <a href="#">Refund Policy</a>
+        <a href="#">Terms & Conditions</a>
+      </div>
+  
+      <!-- Contact Info -->
+      <div class="footer-box">
+        <h3>Contact</h3>
+        <p>📞 Shivansh Chandel: +91 73409 00212</p>
+        <p>📞 Sambhav Sehgal: +91 79882 80245</p>
+        <p>📞 Shivansh Pathania: +91 62306 50034</p>
+        <p>📧 support@xmotors.com</p>
+      </div>
+    </div>
+  
+    <div class="copyright">
+      <p>&copy; 2024 <b>Xmotors</b>. All Rights Reserved. | Designed with ❤️</p>
+    </div>
+  </footer>
+  
+<script src="main.js"></script>
+</body>
+</html>
