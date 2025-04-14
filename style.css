@@ -836,7 +836,13 @@ footer .copyright {
     box-shadow: 0 8px 18px rgba(253, 5, 47, 0.4);
   }
   
-
+    .menu-toggle {
+      display: none;
+      font-size: 32px;
+      cursor: pointer;
+      user-select: none;
+      color: white;
+    }
 /* Media Queries for Responsiveness */
 
 /* Large Screens (Desktop) */
@@ -1284,7 +1290,9 @@ footer .copyright {
 
   /* ======= Phones (max-width: 767px) ======= */
   @media (max-width: 767px) {
-
+    .menu-toggle {
+    display: block;
+    }
     .nav.container {
       padding: 10px;
     }
