@@ -279,7 +279,7 @@ document.addEventListener('DOMContentLoaded', function() {
           'price': 'Prices vary depending on model and configuration. Which vehicle are you interested in?',
           'appointment': 'Would you like to set up an appointment with one of our team members?',
           'used cars': 'We offer inspected, high-quality pre-owned vehicles. Would you like to see our current selection?',
-          'new cars': 'We have the latest high-end models. Let me know if you're looking for a specific brand or model.',
+          'new cars': 'We have the latest high-end models. Let me know if you are looking for a specific brand or model.',
           'porsche': 'The Porsche Taycan is available now. Would you like more details on its features and pricing?',
           'audi': 'We currently stock the Audi A4. Interested in a sleek premium sedan?',
           'bugatti': 'We offer both the Bugatti Bolide and the Bugatti Tourbillon. Want to explore these hypercars?',
