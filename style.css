@@ -838,217 +838,6 @@ footer .copyright {
     box-shadow: 0 8px 18px rgba(253, 5, 47, 0.4);
   }
   
-
-/* Media Queries for Responsiveness */
-
-/* Large Screens (Desktop) */
-@media screen and (max-width: 1024px) {
-    /* Home Section */
-    .home-text h1 {
-        font-size: 2.5rem;
-    }
-
-    .navbar a {
-        font-size: 1rem;
-    }
-
-    .cars-container .box,
-    .parts-container .box {
-        flex: 1 1 48%;
-    }
-
-    .about-img,
-    .about-text {
-        flex: 1 1 48%;
-    }
-
-    .heading span {
-        font-size: 50px;
-    }
-
-    /* Footer Layout */
-    .footer-container {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .social a {
-        font-size: 18px;
-    }
-
-    .btn {
-        width: 100%;
-        padding: 15px;
-    }
-}
-
-/* Tablets (Medium Screens) */
-@media screen and (max-width: 768px) {
-    /* Home Section */
-    .home-text h1 {
-        font-size: 2rem;
-    }
-
-    .navbar {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .navbar a {
-        font-size: 1.1rem;
-        margin: 10px 0;
-    }
-
-    /* Cars and Parts Layout */
-    .cars-container .box,
-    .parts-container .box {
-        flex: 1 1 48%;
-    }
-
-    /* About Section */
-    .about-img,
-    .about-text {
-        flex: 1 1 100%;
-    }
-
-    /* Footer Layout */
-    .footer-container {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .social a {
-        font-size: 18px;
-    }
-
-    /* Button Adjustment */
-    .btn {
-        width: 100%;
-        padding: 15px;
-    }
-}
-
-/* Small Screens (Mobile Phones) */
-@media screen and (max-width: 480px) {
-    /* Header */
-    header {
-        padding: 10px 20px;
-    }
-
-    .logo {
-        font-size: 1.4rem;
-    }
-
-    .navbar {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .navbar a {
-        font-size: 1rem;
-        margin: 10px 0;
-    }
-
-    .home-text h1 {
-        font-size: 1.8rem;
-        text-align: center;
-    }
-
-    .home-text p {
-        font-size: 1rem;
-        margin-left: 0;
-        text-align: center;
-    }
-
-    .btn {
-        width: 100%;
-        padding: 12px 20px;
-    }
-
-    .cars-container .box,
-    .parts-container .box {
-        flex: 1 1 100%;
-        height: auto;
-    }
-
-    .about-img,
-    .about-text {
-        flex: 1 1 100%;
-    }
-
-    .footer-container {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .social a {
-        font-size: 16px;
-    }
-
-    .footer-box a {
-        font-size: 1rem;
-    }
-
-    .heading span {
-        font-size: 30px;
-    }
-
-    .copyright {
-        font-size: 12px;
-    }
-}
-
-@media screen and (max-width: 320px) {
-    .home-text h1 {
-        font-size: 1.5rem;
-    }
-
-    .home-text p {
-        font-size: 0.9rem;
-    }
-
-    .navbar a {
-        font-size: 0.9rem;
-        margin: 5px 0;
-    }
-
-    .cars-container .box {
-        flex: 1 1 100%;
-    }
-
-    .about-img,
-    .about-text {
-        flex: 1 1 100%;
-    }
-
-    .footer-container {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .social a {
-        font-size: 14px;
-        margin-right: 0.5rem;
-    }
-
-    .footer-box a {
-        font-size: 0.9rem;
-    }
-
-    .btn {
-        padding: 12px;
-        font-size: 1rem;
-    }
-
-    .heading span {
-        font-size: 25px;
-    }
-
-    .copyright {
-        font-size: 10px;
-    }
-}
-
 .cart-popup {
     position: fixed;
     top: 80px;
@@ -1307,72 +1096,104 @@ footer .copyright {
     to { opacity: 1; }
 }
 
-/* Checkout Page Styles */
-.checkout-container {
-    max-width: 1200px;
-    margin: 2rem auto;
-    padding: 0 1rem;
-    color: #fff;
-}
+/* ========== Responsive Design ========== */
 
-.checkout-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 2rem;
-    margin-top: 2rem;
-}
+/* Tablets (768px and below) */
+@media (max-width: 768px) {
+  .nav.container {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
 
-.checkout-form {
-    background: #1a1a1a;
-    padding: 2rem;
-    border-radius: 8px;
-    border: 1px solid #333;
-}
-
-.order-summary {
-    background: #1a1a1a;
-    padding: 2rem;
-    border-radius: 8px;
-    border: 1px solid #333;
-    align-self: start;
-}
-
-.form-group {
-    margin-bottom: 1.5rem;
-}
-
-.form-group label {
-    display: block;
-    margin-bottom: 0.5rem;
-    color: #fff;
-}
-
-.form-group input,
-.form-group textarea,
-.form-group select {
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
     width: 100%;
-    padding: 0.75rem;
-    border: 1px solid #333;
-    border-radius: 4px;
-    background: #2a2a2a;
-    color: #fff;
+    padding: 10px 0;
+  }
+
+  .navbar a {
+    padding: 10px;
+    width: 100%;
+  }
+
+  .home {
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    padding: 2rem 1rem;
+  }
+
+  .home-text h1,
+  .home-text p,
+  .btn {
+    margin-left: 0;
+  }
+
+  .btn {
+    margin-top: 15px;
+  }
+
+  .chat-container {
+    width: 90%;
+    right: 5%;
+    bottom: 100px;
+  }
+
+  .car-box img {
+    height: 180px;
+  }
+
+  .about {
+    flex-direction: column;
+    text-align: center;
+  }
 }
 
-.form-row {
-    display: flex;
-    gap: 1rem;
+/* Mobile (480px and below) */
+@media (max-width: 480px) {
+  .logo {
+    font-size: 22px;
+  }
+
+  .chat-container {
+    width: 95%;
+    right: 2.5%;
+    bottom: 90px;
+  }
+
+  .car-box h2 {
+    font-size: 18px;
+    padding: 10px 6px;
+  }
+
+  .home-text h1 {
+    font-size: 28px;
+  }
+
+  .btn {
+    padding: 10px 20px;
+    font-size: 14px;
+  }
+
+  .chat-header h3 {
+    font-size: 14px;
+  }
+
+  .chat-input {
+    padding: 6px 10px;
+  }
+
+  .chat-send {
+    padding: 6px 10px;
+    font-size: 14px;
+  }
+
+  .scroll-to-top {
+    font-size: 16px;
+    padding: 8px 12px;
+  }
 }
 
-.form-row .form-group {
-    flex: 1;
-}
-
-.payment-methods {
-    margin: 1.5rem 0;
-}
-
-.payment-option {
-    display: flex;
-    align-items: center;
-    margin-bottom: 0.5rem;
   
