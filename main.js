@@ -131,7 +131,7 @@ document.addEventListener("DOMContentLoaded", () => {
             if (clearBtn) {
                 clearBtn.addEventListener('click', clearCart);
             }
-
+            
             const buyBtn = cartPopup.querySelector('.buy-now-btn');
             if (buyBtn) {
                 buyBtn.addEventListener('click', buyNow);
@@ -179,7 +179,7 @@ document.addEventListener("DOMContentLoaded", () => {
             showTemporaryPopup('Your cart is already empty!');
             return false;
         }
-
+        
         if (confirm('Are you sure you want to clear your cart?')) {
             while(cart.length > 0) {
                 cart.pop();
@@ -201,30 +201,30 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // Show loading state
         const loadingPopup = showTemporaryPopup('Processing your purchase...', 0);
-
+        
         // Simulate API call delay
         setTimeout(() => {
             try {
                 // Calculate total
                 const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-
+                
                 // Generate order summary
                 const orderItems = cart.map(item => 
                     `${item.quantity}x ${item.name} - $${item.price.toFixed(2)}`
                 ).join('\n');
-
+                
                 // Remove loading popup
                 loadingPopup.remove();
-
+                
                 // Show success message with order details
                 showTemporaryPopup(
                     `Order Confirmed!\n\nItems:\n${orderItems}\n\nTotal: $${total.toFixed(2)}\nThank you for your purchase!`,
                     5000
                 );
-
+                
                 // Clear cart
                 clearCart();
-
+                
                 return true;
             } catch (error) {
                 loadingPopup.remove();
@@ -247,7 +247,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 tempPopup.remove();
             }, duration);
         }
-
+        
         return tempPopup; // Return reference for removal
     }
 
@@ -297,10 +297,6 @@ document.addEventListener('DOMContentLoaded', function() {
         'login': 'You can log in to your account by clicking the Login link in the top navigation bar.',
         'blog': 'Check out our blog by clicking the Blog link in the navigation menu for the latest news and updates from Xmotors.',
         'cart': 'You can view your cart by clicking the cart icon in the navigation bar. Your current cart count is displayed next to the icon.'
-
-
-
-
     };
 
     chatBubble.addEventListener('click', function() {
@@ -346,12 +342,12 @@ document.addEventListener('DOMContentLoaded', function() {
         const emojiSpan = document.createElement('span');
         emojiSpan.classList.add('message-emoji');
         emojiSpan.textContent = '🚗';
-
+        
         messageElement.appendChild(emojiSpan);
         messageElement.appendChild(document.createTextNode(message));
-
+        
         chatBody.appendChild(messageElement);
-
+        
         chatBody.scrollTop = chatBody.scrollHeight;
     }
 
@@ -359,12 +355,12 @@ document.addEventListener('DOMContentLoaded', function() {
         const indicator = document.createElement('div');
         indicator.classList.add('typing-indicator');
         indicator.id = 'typingIndicator';
-
+        
         for (let i = 0; i < 3; i++) {
             const dot = document.createElement('span');
             indicator.appendChild(dot);
         }
-
+        
         chatBody.appendChild(indicator);
         chatBody.scrollTop = chatBody.scrollHeight;
     }
@@ -379,17 +375,17 @@ document.addEventListener('DOMContentLoaded', function() {
     function getBotResponse(userInput) {
 
         const input = userInput.toLowerCase();
-
+        
         if (knowledgeBase[input]) {
             return knowledgeBase[input];
         }
-
+        
         for (const key in knowledgeBase) {
             if (input.includes(key)) {
                 return knowledgeBase[key];
             }
         }
-
+        
         if (input.includes('thank')) {
             return "You're welcome! Is there anything else I can help you with regarding Xmotors vehicles or services?";
         } else if (input.includes('bye') || input.includes('goodbye')) {
@@ -414,15 +410,15 @@ document.addEventListener('DOMContentLoaded', function() {
 
   document.getElementById("matchQuizForm").addEventListener("submit", function(e) {
     e.preventDefault();
-
+    
     const form = e.target;
     const brand = form.querySelector('select:nth-of-type(1)').value;
     const budget = form.querySelector('select:nth-of-type(2)').value;
     const carType = form.querySelector('select:nth-of-type(3)').value;
-
+    
     // Match logic based on selections
     let matchedCar = findMatchingCar(brand, budget, carType);
-
+    
     if (matchedCar) {
       // Show match result
       const matchContent = document.querySelector('.match-content');
@@ -549,10 +545,4 @@ document.addEventListener('DOMContentLoaded', function() {
     return matches.length > 0 ? matches[0] : null;
   }
 
-  const toggleBtn = document.getElementById('menu-toggle');
-  const navbar = document.getElementById('navbar');
 
-  toggleBtn.addEventListener('click', () => {
-    navbar.classList.toggle('active');
-  });
-~
