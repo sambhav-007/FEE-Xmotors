@@ -131,7 +131,7 @@ document.addEventListener("DOMContentLoaded", () => {
             if (clearBtn) {
                 clearBtn.addEventListener('click', clearCart);
             }
-            
+
             const buyBtn = cartPopup.querySelector('.buy-now-btn');
             if (buyBtn) {
                 buyBtn.addEventListener('click', buyNow);
@@ -179,7 +179,7 @@ document.addEventListener("DOMContentLoaded", () => {
             showTemporaryPopup('Your cart is already empty!');
             return false;
         }
-        
+
         if (confirm('Are you sure you want to clear your cart?')) {
             while(cart.length > 0) {
                 cart.pop();
@@ -201,30 +201,30 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // Show loading state
         const loadingPopup = showTemporaryPopup('Processing your purchase...', 0);
-        
+
         // Simulate API call delay
         setTimeout(() => {
             try {
                 // Calculate total
                 const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-                
+
                 // Generate order summary
                 const orderItems = cart.map(item => 
                     `${item.quantity}x ${item.name} - $${item.price.toFixed(2)}`
                 ).join('\n');
-                
+
                 // Remove loading popup
                 loadingPopup.remove();
-                
+
                 // Show success message with order details
                 showTemporaryPopup(
                     `Order Confirmed!\n\nItems:\n${orderItems}\n\nTotal: $${total.toFixed(2)}\nThank you for your purchase!`,
                     5000
                 );
-                
+
                 // Clear cart
                 clearCart();
-                
+
                 return true;
             } catch (error) {
                 loadingPopup.remove();
@@ -247,7 +247,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 tempPopup.remove();
             }, duration);
         }
-        
+
         return tempPopup; // Return reference for removal
     }
 
@@ -264,43 +264,43 @@ document.addEventListener('DOMContentLoaded', function() {
 
     const knowledgeBase = {
 
-          'hello': 'Hello! Welcome to Xmotors. How can I assist you today?',
-          'hi': 'Hi there! Need help exploring our luxury vehicles or parts? I’m here to help!',
-          'hours': 'Xmotors is open Monday to Friday from 9am to 8pm, Saturday from 9am to 6pm, and Sunday from 11am to 5pm.',
-          'location': 'We’re at your service! For directions, please check the footer section or contact our team directly.',
-          'inventory': 'We offer an exclusive range of high-performance cars like Porsche Taycan, Audi A4, Bugatti Tourbillon, McLaren 720S, Koenigsegg Regera, Maserati Granturismo, Ferrari SF90, and more. Head to the Cars section to explore.',
-          'financing': 'Yes, we offer flexible financing options. Would you like to connect with our finance expert?',
-          'test drive': 'Absolutely! You can schedule a test drive from the "Booked Test Drives" section on our website.',
-          'trade in': 'We do accept trade-ins. Want to get a quick estimate on your vehicle?',
-          'warranty': 'All vehicles include manufacturer warranty options, and we also offer extended warranties on request.',
-          'service': 'Our expert technicians provide premium maintenance services. Visit the About section to learn more.',
-          'parts': 'Explore our Parts section for premium components like engines, gearboxes, spare parts, air filters, alternators, and MRF tyres.',
-          'specials': 'We feature exclusive deals on luxury models. Visit our homepage for current promotions.',
-          'price': 'Prices vary depending on model and configuration. Which vehicle are you interested in?',
-          'appointment': 'Would you like to set up an appointment with one of our team members?',
-          'used cars': 'We offer inspected, high-quality pre-owned vehicles. Would you like to see our current selection?',
-          'new cars': 'We have the latest high-end models. Let me know if you are looking for a specific brand or model.',
-          'porsche': 'The Porsche Taycan is available now. Would you like more details on its features and pricing?',
-          'audi': 'We currently stock the Audi A4. Interested in a sleek premium sedan?',
-          'bugatti': 'We offer both the Bugatti Bolide and the Bugatti Tourbillon. Want to explore these hypercars?',
-          'lamborghini': 'The Lamborghini Aventador is in our showroom. Would you like to schedule a viewing?',
-          'bmw': 'The BMW XM is a luxury SUV powerhouse. Want the performance specs?',
-          'dodge': 'We have the Dodge Demon in our muscle car collection. Want to know more?',
-          'mclaren': 'Yes, the McLaren 720S is available. Need speed and style?',
-          'koenigsegg': 'Check out the Koenigsegg Regera, a true masterpiece of performance.',
-          'maserati': 'Explore the Maserati Granturismo for an elegant yet powerful drive.',
-          'ferrari': 'The Ferrari SF90 is one of our most sought-after supercars. Want details?',
-          'engine': 'We offer performance engines starting at ₹32.37 lakh. Available in our Parts section.',
-          'gear': 'Our gearboxes are priced at ₹33,199. Visit the Parts section for more info.',
-          'spare parts': 'We stock spare parts ranging from ₹8,299 to ₹24,899. All listed in the Parts section.',
-          'air filter': 'High-quality air filters are available for ₹24,899 in our Parts section.',
-          'alternator': 'Alternators are priced at ₹82,999. You can find them in the Parts section.',
-          'tyre': 'We provide MRF tyres for ₹33,199. Check out the full range in the Parts section.',
-          'contact': 'You can reach us directly: Shivansh Chandel: +91 7340900212, Sambhav Sehgal: +91 7988280245, Shivansh Pathania: +91 6230650034.',
-          'register': 'Click on the "Register" link in the top right navigation to create your Xmotors account.',
-          'login': 'Already a member? Use the "Login" button at the top to access your account.',
-          'blog': 'Visit our Blog section from the top menu for updates, automotive tips, and news.',
-          'cart': 'Click the cart icon in the top navigation bar to view or manage your parts selections.'
+        'hello': 'Hello! Welcome to Xmotors. How can I assist you with our vehicles today?',
+        'hi': 'Hi there! How can I help you find your perfect car at Xmotors?',
+        'hours': 'Our dealership is open Monday to Friday from 9am to 8pm, Saturday from 9am to 6pm, and Sunday from 11am to 5pm.',
+        'location': 'Xmotors is located at your service. For exact directions, please contact our team at the numbers listed in the footer section.',
+        'inventory': 'We have a wide range of luxury and performance vehicles including Porsche Taycan, Audi A4, Bugatti Bolide, Lamborghini Aventador, BMW XM, and Dodge Demon. You can view them in our Cars section.',
+        'financing': 'We offer competitive financing options and can work with various credit situations. Would you like to speak with one of our finance specialists?',
+        'test drive': 'Yes, we offer test drives! You can schedule one online or drop by our Xmotors dealership during business hours.',
+        'trade in': 'We accept trade-ins and offer fair market value for your vehicle. Would you like to get an estimate?',
+        'warranty': 'All new vehicles come with a manufacturer warranty, and we offer extended warranty options for both new and used vehicles.',
+        'service': 'Our service department provides top-notch maintenance by expert technicians as mentioned in our About section.',
+        'parts': 'Our parts department offers quality components like engines, gear boxes, spare parts, air filters, alternators, and MRF tyres. Check our Parts section for more details.',
+        'specials': 'We regularly update our specials and promotions. Check our website for the latest offers.',
+        'price': 'Our prices vary depending on the model, year, and features. Can you tell me which vehicle you are interested in?',
+        'appointment': 'Would you like to schedule an appointment with a sales representative? I can help you set that up.',
+        'used cars': 'At Xmotors, we have a selection of pre-owned vehicles. All undergo a thorough inspection before sale.',
+        'new cars': 'We carry the latest models with various trim levels and options. Is there a specific model you are looking for?',
+        'porsche': 'We have the Porsche Taycan available. Would you like more information about this electric performance car?',
+        'audi': 'We have the Audi A4 in our inventory. It\'s a premium sedan with excellent features and performance.',
+        'bugatti': 'The Bugatti Bolide is one of our high-performance luxury vehicles. Would you like to know more about its specifications?',
+        'lamborghini': 'The Lamborghini Aventador is available at Xmotors. It\'s a supercar with impressive performance capabilities.',
+        'bmw': 'We have the BMW XM in our inventory. It\'s a luxury performance SUV with advanced features.',
+        'dodge': 'The Dodge Demon is available at Xmotors. It\'s a high-performance muscle car with impressive power.',
+        'engine': 'We offer high-quality engines for ₹32.37 lakh. You can find them in our Parts section.',
+        'gear': 'We have gear boxes available for ₹33,199. Check out our Parts section for more information.',
+        'spare parts': 'We offer auto spare parts ranging from ₹8,299 to ₹24,899. You can find them in our Parts section.',
+        'air filter': 'We have air filters available for ₹24,899. Check out our Parts section for more details.',
+        'alternator': 'We offer car alternators for ₹82,999. You can find them in our Parts section.',
+        'tyre': 'We have MRF tyres available for ₹33,199. Check out our Parts section for more information.',
+        'contact': 'You can reach our team members: Shivansh Chandel: +91 7340900212, Sambhav Sehgal: +91 7988280245, or Shivansh Pathania: +91 6230650034.',
+        'register': 'You can register on our website by clicking the Register link in the top navigation bar.',
+        'login': 'You can log in to your account by clicking the Login link in the top navigation bar.',
+        'blog': 'Check out our blog by clicking the Blog link in the navigation menu for the latest news and updates from Xmotors.',
+        'cart': 'You can view your cart by clicking the cart icon in the navigation bar. Your current cart count is displayed next to the icon.'
+
+
+
+
     };
 
     chatBubble.addEventListener('click', function() {
@@ -346,12 +346,12 @@ document.addEventListener('DOMContentLoaded', function() {
         const emojiSpan = document.createElement('span');
         emojiSpan.classList.add('message-emoji');
         emojiSpan.textContent = '🚗';
-        
+
         messageElement.appendChild(emojiSpan);
         messageElement.appendChild(document.createTextNode(message));
-        
+
         chatBody.appendChild(messageElement);
-        
+
         chatBody.scrollTop = chatBody.scrollHeight;
     }
 
@@ -359,12 +359,12 @@ document.addEventListener('DOMContentLoaded', function() {
         const indicator = document.createElement('div');
         indicator.classList.add('typing-indicator');
         indicator.id = 'typingIndicator';
-        
+
         for (let i = 0; i < 3; i++) {
             const dot = document.createElement('span');
             indicator.appendChild(dot);
         }
-        
+
         chatBody.appendChild(indicator);
         chatBody.scrollTop = chatBody.scrollHeight;
     }
@@ -379,17 +379,17 @@ document.addEventListener('DOMContentLoaded', function() {
     function getBotResponse(userInput) {
 
         const input = userInput.toLowerCase();
-        
+
         if (knowledgeBase[input]) {
             return knowledgeBase[input];
         }
-        
+
         for (const key in knowledgeBase) {
             if (input.includes(key)) {
                 return knowledgeBase[key];
             }
         }
-        
+
         if (input.includes('thank')) {
             return "You're welcome! Is there anything else I can help you with regarding Xmotors vehicles or services?";
         } else if (input.includes('bye') || input.includes('goodbye')) {
@@ -414,15 +414,15 @@ document.addEventListener('DOMContentLoaded', function() {
 
   document.getElementById("matchQuizForm").addEventListener("submit", function(e) {
     e.preventDefault();
-    
+
     const form = e.target;
     const brand = form.querySelector('select:nth-of-type(1)').value;
     const budget = form.querySelector('select:nth-of-type(2)').value;
     const carType = form.querySelector('select:nth-of-type(3)').value;
-    
+
     // Match logic based on selections
     let matchedCar = findMatchingCar(brand, budget, carType);
-    
+
     if (matchedCar) {
       // Show match result
       const matchContent = document.querySelector('.match-content');
@@ -555,4 +555,4 @@ document.addEventListener('DOMContentLoaded', function() {
   toggleBtn.addEventListener('click', () => {
     navbar.classList.toggle('active');
   });
-
+~
