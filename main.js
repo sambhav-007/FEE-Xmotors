@@ -545,4 +545,10 @@ document.addEventListener('DOMContentLoaded', function() {
     return matches.length > 0 ? matches[0] : null;
   }
 
+  const toggleBtn = document.getElementById('menu-toggle');
+  const navbar = document.getElementById('navbar');
+
+  toggleBtn.addEventListener('click', () => {
+    navbar.classList.toggle('active');
+  });
 
