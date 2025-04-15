@@ -32,6 +32,15 @@ document.addEventListener("DOMContentLoaded", () => {
         document.body.appendChild(cartPopup);
     }
 
+    // Conversion rate (1 USD to INR)
+    const usdToInr = 83.5;
+
+    // Function to convert USD to INR and format with ₹ symbol
+    function convertToRupees(usdAmount) {
+        const inrAmount = usdAmount * usdToInr;
+        return `₹${inrAmount.toFixed(2)}`;
+    }
+
     // Save cart to localStorage
     function saveCart() {
         localStorage.setItem("cart", JSON.stringify(cart));
@@ -92,7 +101,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 .map(
                     (item, index) =>
                         `<div class="cart-item">
-                            <p>${item.name} - $${item.price.toFixed(2)}</p>
+                            <p>${item.name} - ${convertToRupees(item.price)}</p>
                             <div class="cart-controls">
                                 <button class="decrease-btn" data-index="${index}">-</button>
                                 <span>${item.quantity}</span>
@@ -112,7 +121,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 <h4>Your Cart:</h4>
                 ${cartItems}
                 <hr>
-                <p>Total: $${totalPrice.toFixed(2)}</p>
+                <p>Total: ${convertToRupees(totalPrice)}</p>
                 <div class="cart-actions">
                     <button class="buy-now-btn">Buy Now</button>
                     <button class="clear-cart-btn">Clear Cart</button>
@@ -229,9 +238,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (cart.length === 0) {
             orderItemsContainer.innerHTML = "<p>Your cart is empty!</p>";
-            subtotalElem.textContent = "$0.00";
-            taxElem.textContent = "$0.00";
-            grandTotalElem.textContent = "$0.00";
+            subtotalElem.textContent = "₹0.00";
+            taxElem.textContent = "₹0.00";
+            grandTotalElem.textContent = "₹0.00";
             return;
         }
 
@@ -243,7 +252,7 @@ document.addEventListener("DOMContentLoaded", () => {
             subtotal += itemTotal;
             return `<div class="order-item">
                         <span>${item.name} x${item.quantity}</span>
-                        <span>$${itemTotal.toFixed(2)}</span>
+                        <span>${convertToRupees(itemTotal)}</span>
                     </div>`;
         }).join("");
 
@@ -251,9 +260,9 @@ document.addEventListener("DOMContentLoaded", () => {
         const grandTotal = subtotal + tax;
 
         orderItemsContainer.innerHTML = itemsHtml;
-        subtotalElem.textContent = `$${subtotal.toFixed(2)}`;
-        taxElem.textContent = `$${tax.toFixed(2)}`;
-        grandTotalElem.textContent = `$${grandTotal.toFixed(2)}`;
+        subtotalElem.textContent = convertToRupees(subtotal);
+        taxElem.textContent = convertToRupees(tax);
+        grandTotalElem.textContent = convertToRupees(grandTotal);
     }
 
     updateCartCount();
