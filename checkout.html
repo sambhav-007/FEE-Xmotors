@@ -5,24 +5,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Checkout - Xmotors</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="checkout.css">
 </head>
 <body>
     <header>
-        <nav>
-            <a href="cardealership.html" class="logo">Xmotors</a>
-            <div class="nav-links">
-                <a href="cardealership.html">Home</a>
-                <a href="#cars">Cars</a>
-                <a href="#parts">Parts</a>
-                <a href="blog.html">Blog</a>
-                <a href="#about">About</a>
+        <div class="nav container">
+          <a href="#" class="logo">X<span style="color:#fd052f;">motors</span></a>
+          <div class="menu-toggle" id="menu-toggle">&#9776;</div>
+          <!-- Navbar Menu -->
+          <ul class="navbar">
+            <li><a href="cardealership.html">Home</a></li>
+            <li><a href="cardealership.html#cars">Cars</a></li>
+            <li><a href="cardealership.html#about">About</a></li>
+            <li><a href="cardealership.html#parts">Parts</a></li>
+            <li><a href="cardealership.htmlblog.html">Blog</a></li>
+            <li><a href="cardealership.html#test-drive">Test Drive</a></li>
+            <li>
+              <a href="#" id="cart-icon">
+                <i class="fa-solid fa-cart-shopping"></i>
+                <span id="cart-count">0</span>
+              </a>
+            </li>
+          </ul>
+
+          <!-- Login/Register -->
+          <div class="log-reg">
+                <a href="register.html" class="btn btn-outline">Register</a>
+                <a href="index.html" class="btn btn-outline">Login</a>
             </div>
-            <div class="nav-icons">
-                <a href="login.html" id="login-icon">Login</a>
-                <a href="register.html" id="register-icon">Register</a>
-                <a href="#" id="cart-icon">Cart (<span id="cart-count">0</span>)</a>
-            </div>
-        </nav>
+        </div>
     </header>
 
     <main class="checkout-container">
@@ -130,30 +141,53 @@
     </main>
 
     <footer>
-        <div class="footer-content">
-            <div class="footer-section">
-                <h3>Xmotors</h3>
-                <p>Your premier destination for luxury and performance vehicles.</p>
+        <div class="footer-container">
+          <!-- Logo & Socials -->
+          <div class="footer-box">
+            <a href="#" class="logo">
+              <span style="color:#fd052f;"></span style="color:white;">X<span>motors</span>
+            </a>
+            <p>Your trusted destination for luxury and performance vehicles.</p>
+            <div class="social">
+              <a href="https://www.facebook.com/xmotorsNZ/" class="fa-brands fa-facebook-f"></a>
+              <a href="https://www.instagram.com/xmotors.me/" class="fa-brands fa-instagram"></a>
+              <a href="#" class="fa-brands fa-x-twitter"></a>
             </div>
-            <div class="footer-section">
-                <h3>Quick Links</h3>
-                <ul>
-                    <li><a href="cardealership.html">Home</a></li>
-                    <li><a href="#cars">Inventory</a></li>
-                    <li><a href="blog.html">Blog</a></li>
-                    <li><a href="#about">About Us</a></li>
-                </ul>
-            </div>
-            <div class="footer-section">
-                <h3>Contact</h3>
-                <p>Email: info@xmotors.com</p>
-                <p>Phone: +1 (555) 123-4567</p>
-            </div>
+          </div>
+
+          <!-- Quick Links -->
+          <div class="footer-box">
+            <h3>Quick Links</h3>
+            <a href="cardealership.html">Home</a>
+            <a href="#cars">Cars</a>
+            <a href="#parts">Parts</a>
+            <a href="#about">About</a>
+            <a href="#test-drive">Test Drive</a>
+          </div>
+
+          <!-- Legal Info -->
+          <div class="footer-box">
+            <h3>Legal</h3>
+            <a href="#">Privacy Policy</a>
+            <a href="#">Cookie Policy</a>
+            <a href="#">Refund Policy</a>
+            <a href="#">Terms & Conditions</a>
+          </div>
+
+          <!-- Contact Info -->
+          <div class="footer-box">
+            <h3>Contact</h3>
+            <p>📞 Shivansh Chandel: +91 73409 00212</p>
+            <p>📞 Sambhav Sehgal: +91 79882 80245</p>
+            <p>📞 Shivansh Pathania: +91 62306 50034</p>
+            <p>📧 support@xmotors.com</p>
+          </div>
         </div>
-        <div class="footer-bottom">
-            <p>&copy; 2023 Xmotors. All rights reserved.</p>
+
+        <div class="copyright">
+          <p>&copy; 2024 <b>Xmotors</b>. All Rights Reserved. | Designed with ❤️</p>
         </div>
-    </footer>
+      </footer>
 
     <script src="main.js"></script>
 </body>

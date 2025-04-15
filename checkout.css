@@ -1,0 +1,215 @@
+/* Checkout page styles */
+body {
+    background-color: #111;
+    color: #eee;
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+.checkout-container {
+    max-width: 1000px;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: #111; /* dark background */
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(253, 5, 47, 0.4); /* red shadow */
+}
+
+.checkout-grid {
+    display: flex;
+    gap: 40px;
+    flex-wrap: wrap;
+}
+
+.checkout-form, .order-summary {
+    background: #1a1a1a; /* dark background */
+    padding: 20px;
+    border-radius: 8px;
+    flex: 1 1 400px;
+    box-shadow: 0 0 5px rgba(253, 5, 47, 0.2); /* subtle red shadow */
+}
+
+.checkout-form h2, .order-summary h2 {
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+    border-bottom: 2px solid #fd052f; /* red border */
+    padding-bottom: 10px;
+    color: #fff; /* white text */
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #ccc; /* light gray text */
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="tel"],
+.form-group textarea {
+    width: 100%;
+    padding: 8px 10px;
+    border: 1px solid #444; /* dark border */
+    border-radius: 4px;
+    font-size: 1rem;
+    background-color: #222; /* dark input background */
+    color: #eee; /* light text */
+}
+
+.form-group input[type="text"]::placeholder,
+.form-group input[type="email"]::placeholder,
+.form-group input[type="tel"]::placeholder,
+.form-group textarea::placeholder {
+    color: #888; /* placeholder color */
+}
+
+.form-row {
+    display: flex;
+    gap: 20px;
+}
+
+.payment-methods {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.payment-option {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    color: #ccc; /* light gray text */
+}
+
+.checkout-btn {
+    background-color: #fd052f; /* red button */
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    font-size: 1.1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.checkout-btn:hover {
+    background-color: #e00428; /* darker red on hover */
+}
+
+.order-summary .order-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    font-size: 1.1rem;
+    color: #eee; /* light text */
+}
+
+.order-totals {
+    margin-top: 20px;
+}
+
+.total-row {
+    display: flex;
+    justify-content: space-between;
+    font-weight: bold;
+    margin-bottom: 8px;
+    color: #ccc; /* light gray text */
+}
+
+.grand-total {
+    font-size: 1.3rem;
+    color: #fd052f; /* red accent */
+}
+
+/* Cart popup styles */
+.cart-popup {
+    position: fixed;
+    top: 60px;
+    right: 20px;
+    width: 320px;
+    max-height: 400px;
+    overflow-y: auto;
+    background: #1a1a1a; /* dark background */
+    border: 1px solid #444; /* dark border */
+    box-shadow: 0 0 10px rgba(253, 5, 47, 0.4); /* red shadow */
+    padding: 15px;
+    z-index: 1000;
+    border-radius: 8px;
+    color: #eee; /* light text */
+}
+
+.cart-popup h4 {
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-size: 1.2rem;
+    color: #fd052f; /* red heading */
+}
+
+.cart-item {
+    margin-bottom: 10px;
+}
+
+.cart-controls {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin-top: 5px;
+}
+
+.cart-controls button {
+    background-color: #fd052f; /* red button */
+    border: none;
+    color: white;
+    padding: 3px 8px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.cart-controls button:hover {
+    background-color: #e00428; /* darker red on hover */
+}
+
+.cart-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+}
+
+.cart-actions button {
+    background-color: #28a745;
+    border: none;
+    color: white;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.cart-actions button.clear-cart-btn {
+    background-color: #dc3545;
+}
+
+.cart-actions button:hover {
+    opacity: 0.9;
+}
+
+/* Temporary popup message */
+.temporary-popup {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #333;
+    color: white;
+    padding: 12px 20px;
+    border-radius: 25px;
+    font-size: 1rem;
+    opacity: 0.9;
+    z-index: 1100;
+}

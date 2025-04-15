@@ -18,75 +18,69 @@ scrollToTopBtn.addEventListener("click", () => {
     });
 });
 
-// const links = document.querySelectorAll('a');
-// const loader = document.getElementById('loader');
-
-// function showLoaderAndRedirect(event, url) {
-//     event.preventDefault(); 
-//     loader.style.display = 'flex'; 
-
-//     setTimeout(() => {
-//         window.location.href = url; 
-//     }, 1500); 
-// }
-
-// links.forEach(link => {
-//     if (link.href) {
-//         link.addEventListener('click', (event) => {
-//             showLoaderAndRedirect(event, link.href);
-//         });
-//     }
-// });
-
 document.addEventListener("DOMContentLoaded", () => {
-    const cart = [];
+    const cart = JSON.parse(localStorage.getItem("cart")) || [];
     const cartCount = document.getElementById("cart-count");
     const cartIcon = document.getElementById("cart-icon");
 
     // Create a cart popup element
-    const cartPopup = document.createElement("div");
-    cartPopup.className = "cart-popup";
-    cartPopup.style.display = "none";
-    document.body.appendChild(cartPopup);
+    let cartPopup = document.querySelector(".cart-popup");
+    if (!cartPopup) {
+        cartPopup = document.createElement("div");
+        cartPopup.className = "cart-popup";
+        cartPopup.style.display = "none";
+        document.body.appendChild(cartPopup);
+    }
 
-    // Handle Add to Cart
-    document.querySelectorAll("#add-to-cart").forEach((btn) => {
-            btn.addEventListener("click", (e) => {
-                e.preventDefault();
-                e.stopPropagation();
-                e.stopImmediatePropagation();
-
-            const name = btn.getAttribute("data-name");
-            const price = parseFloat(btn.getAttribute("data-price"));
-
-            // Check if the item already exists in the cart
-            const existingItem = cart.find((item) => item.name === name);
-            if (existingItem) {
-                existingItem.quantity += 1; 
-            } else {
-                cart.push({ name, price, quantity: 1 }); 
-            }
-            updateCartCount();
-            displayCartPopup();
-            showTemporaryPopup(`${name} added to the cart!`);
-        });
-    });
+    // Save cart to localStorage
+    function saveCart() {
+        localStorage.setItem("cart", JSON.stringify(cart));
+    }
 
     // Update Cart Count
     function updateCartCount() {
         const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
         cartCount.textContent = totalItems;
+        saveCart();
     }
 
-    // Toggle Cart Popup
-    cartIcon.addEventListener("click", (e) => {
-        e.preventDefault();
+    // Show temporary popup message
+    function showTemporaryPopup(message, duration = 2000) {
+        const tempPopup = document.createElement("div");
+        tempPopup.className = "temporary-popup";
+        tempPopup.textContent = message;
 
-        if (cartPopup.style.display === "none") {
-            displayCartPopup();
-        } else {
-            cartPopup.style.display = "none"; // Close the popup
+        document.body.appendChild(tempPopup);
+
+        if (duration > 0) {
+            setTimeout(() => {
+                tempPopup.remove();
+            }, duration);
         }
+
+        return tempPopup;
+    }
+
+    // Handle Add to Cart buttons
+    document.querySelectorAll("#add-to-cart").forEach((btn) => {
+        btn.addEventListener("click", (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            e.stopImmediatePropagation();
+
+            const name = btn.getAttribute("data-name");
+            const price = parseFloat(btn.getAttribute("data-price"));
+
+            const existingItem = cart.find((item) => item.name === name);
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({ name, price, quantity: 1 });
+            }
+            updateCartCount();
+            displayCartPopup();
+            showTemporaryPopup(`${name} added to the cart!`);
+        });
     });
 
     // Display Cart Popup with Items
@@ -122,7 +116,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 <div class="cart-actions">
                     <button class="buy-now-btn">Buy Now</button>
                     <button class="clear-cart-btn">Clear Cart</button>
-                    
                 </div>
             `;
 
@@ -131,10 +124,17 @@ document.addEventListener("DOMContentLoaded", () => {
             if (clearBtn) {
                 clearBtn.addEventListener('click', clearCart);
             }
-            
+
             const buyBtn = cartPopup.querySelector('.buy-now-btn');
             if (buyBtn) {
-                buyBtn.addEventListener('click', buyNow);
+                buyBtn.addEventListener('click', () => {
+                    if (cart.length === 0) {
+                        showTemporaryPopup('Your cart is empty!');
+                        return;
+                    }
+                    // Redirect to checkout page
+                    window.location.href = "checkout.html";
+                });
             }
 
             // Add event listeners for controls
@@ -153,7 +153,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     if (cart[index].quantity > 1) {
                         cart[index].quantity -= 1;
                     } else {
-                        cart.splice(index, 1); // Remove item if quantity reaches 0
+                        cart.splice(index, 1);
                     }
                     updateCartCount();
                     displayCartPopup();
@@ -163,14 +163,14 @@ document.addEventListener("DOMContentLoaded", () => {
             cartPopup.querySelectorAll(".remove-btn").forEach((btn) =>
                 btn.addEventListener("click", (e) => {
                     const index = parseInt(btn.getAttribute("data-index"), 10);
-                    cart.splice(index, 1); // Remove item
+                    cart.splice(index, 1);
                     updateCartCount();
                     displayCartPopup();
                 })
             );
         }
 
-        cartPopup.style.display = "block"; // Show the popup
+        cartPopup.style.display = "block";
     }
 
     // Clear Cart Functionality
@@ -179,9 +179,9 @@ document.addEventListener("DOMContentLoaded", () => {
             showTemporaryPopup('Your cart is already empty!');
             return false;
         }
-        
+
         if (confirm('Are you sure you want to clear your cart?')) {
-            while(cart.length > 0) {
+            while (cart.length > 0) {
                 cart.pop();
             }
             updateCartCount();
@@ -192,69 +192,238 @@ document.addEventListener("DOMContentLoaded", () => {
         return false;
     }
 
-    //Buy Now Functionality
-    function buyNow() {
-        if (cart.length === 0) {
-            showTemporaryPopup('Your cart is empty!');
-            return false;
-        }
-
-        // Show loading state
-        const loadingPopup = showTemporaryPopup('Processing your purchase...', 0);
-        
-        // Simulate API call delay
-        setTimeout(() => {
-            try {
-                // Calculate total
-                const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-                
-                // Generate order summary
-                const orderItems = cart.map(item => 
-                    `${item.quantity}x ${item.name} - $${item.price.toFixed(2)}`
-                ).join('\n');
-                
-                // Remove loading popup
-                loadingPopup.remove();
-                
-                // Show success message with order details
-                showTemporaryPopup(
-                    `Order Confirmed!\n\nItems:\n${orderItems}\n\nTotal: $${total.toFixed(2)}\nThank you for your purchase!`,
-                    5000
-                );
-                
-                // Clear cart
-                clearCart();
-                
-                return true;
-            } catch (error) {
-                loadingPopup.remove();
-                showTemporaryPopup('Purchase failed. Please try again.', 3000);
-                return false;
+    // Checkout page functionality
+    if (window.location.pathname.endsWith("checkout.html")) {
+        populateOrderSummary();
+        const checkoutForm = document.getElementById("checkout-form");
+        checkoutForm.addEventListener("submit", (e) => {
+            e.preventDefault();
+            if (cart.length === 0) {
+                alert("Your cart is empty!");
+                return;
             }
-        }, 2000);
+            // Simple form validation can be added here
+
+            // Simulate purchase processing
+            alert("Thank you for your purchase!");
+            // Clear cart after purchase
+            while (cart.length > 0) {
+                cart.pop();
+            }
+            updateCartCount();
+            // Redirect to home or confirmation page
+            window.location.href = "cardealership.html";
+        });
     }
 
-    // Updated Temporary Popup Message with duration parameter
-    function showTemporaryPopup(message, duration = 2000) {
-        const tempPopup = document.createElement("div");
-        tempPopup.className = "temporary-popup";
-        tempPopup.textContent = message;
+    // Populate order summary in checkout.html
+    function populateOrderSummary() {
+        const orderItemsContainer = document.getElementById("order-items");
+        const subtotalElem = document.getElementById("subtotal");
+        const taxElem = document.getElementById("tax");
+        const grandTotalElem = document.getElementById("grand-total");
 
-        document.body.appendChild(tempPopup);
-
-        if (duration > 0) {
-            setTimeout(() => {
-                tempPopup.remove();
-            }, duration);
+        if (!orderItemsContainer || !subtotalElem || !taxElem || !grandTotalElem) {
+            return;
         }
-        
-        return tempPopup; // Return reference for removal
+
+        if (cart.length === 0) {
+            orderItemsContainer.innerHTML = "<p>Your cart is empty!</p>";
+            subtotalElem.textContent = "$0.00";
+            taxElem.textContent = "$0.00";
+            grandTotalElem.textContent = "$0.00";
+            return;
+        }
+
+        const taxRate = 0.1; // 10% tax for example
+        let subtotal = 0;
+
+        const itemsHtml = cart.map(item => {
+            const itemTotal = item.price * item.quantity;
+            subtotal += itemTotal;
+            return `<div class="order-item">
+                        <span>${item.name} x${item.quantity}</span>
+                        <span>$${itemTotal.toFixed(2)}</span>
+                    </div>`;
+        }).join("");
+
+        const tax = subtotal * taxRate;
+        const grandTotal = subtotal + tax;
+
+        orderItemsContainer.innerHTML = itemsHtml;
+        subtotalElem.textContent = `$${subtotal.toFixed(2)}`;
+        taxElem.textContent = `$${tax.toFixed(2)}`;
+        grandTotalElem.textContent = `$${grandTotal.toFixed(2)}`;
     }
 
+    updateCartCount();
+    // Remove the automatic display of the cart popup on page load
+    // displayCartPopup();
+
+    // Cart icon click toggles popup
+    cartIcon.addEventListener("click", (e) => {
+        e.preventDefault();
+        if (cartPopup.style.display === "none" || cartPopup.style.display === "") {
+            displayCartPopup();
+        } else {
+            cartPopup.style.display = "none";
+        }
+    });
 });
 
+// Chat bot functionality
 document.addEventListener('DOMContentLoaded', function() {
     const chatBubble = document.getElementById('chatBubble');
+
+window.openMatchFinder = function() {
+  document.getElementById('matchFinderPopup').style.display = 'block';
+};
+
+window.closeMatchFinder = function() {
+  document.getElementById('matchFinderPopup').style.display = 'none';
+};
+
+document.getElementById("matchQuizForm").addEventListener("submit", function(e) {
+  e.preventDefault();
+  
+  const form = e.target;
+  const brand = form.querySelector('select:nth-of-type(1)').value;
+  const budget = form.querySelector('select:nth-of-type(2)').value;
+  const carType = form.querySelector('select:nth-of-type(3)').value;
+  
+  console.log("Match Finder Form Submitted");
+  console.log("Brand:", brand, "Budget:", budget, "Car Type:", carType);
+  
+  // Match logic based on selections
+  let matchedCar = findMatchingCar(brand, budget, carType);
+  
+  console.log("Matched Car:", matchedCar);
+  
+  if (matchedCar) {
+    // Show match result
+    const matchContent = document.querySelector('.match-content');
+    matchContent.innerHTML = `
+      <span class="close-btn" onclick="closeMatchFinder()">&times;</span>
+      <h2>Your Perfect Match!</h2>
+      <div style="text-align: center; margin: 20px 0;">
+        <img src="img/${matchedCar.image}" alt="${matchedCar.name}" style="max-width: 100%; border-radius: 10px;">
+        <h3>${matchedCar.name}</h3>
+        <p>This ${matchedCar.type} matches your preferences for ${brand} in the ${budget} range.</p>
+        <div style="margin-top: 20px;">
+          <a href="${matchedCar.link}" class="btn" style="margin: 0 15px;">View Details</a>
+          <a href="#test-drive" class="btn" style="margin: 0 15px;" onclick="closeMatchFinder()">Book Test Drive</a>
+        </div>
+      </div>
+    `;
+  } else {
+    // No match found
+    const matchContent = document.querySelector('.match-content');
+    matchContent.innerHTML = `
+      <span class="close-btn" onclick="closeMatchFinder()">&times;</span>
+      <h2>No Exact Match Found</h2>
+      <p>We couldn't find a perfect match based on your criteria.</p>
+      <p>Our team can help you find alternatives - please contact us or check our full inventory.</p>
+      <div style="margin-top: 20px;">
+        <a href="#cars" class="btn" onclick="closeMatchFinder()">View All Cars</a>
+      </div>
+    `;
+  }
+});
+
+function findMatchingCar(brand, budget, carType) {
+  // Car database - would normally come from backend
+  const cars = [
+    {
+      name: "PORSCHE TAYCAN",
+      brand: "Porsche",
+      type: "Electric",
+      budget: "₹1-10 crore",
+      image: "car1.jpg",
+      link: "porshetaycan.html"
+    },
+    {
+      name: "AUDI e-tron GT",
+      brand: "Audi",
+      type: "Electric",
+      budget: "Below ₹1 crore",
+      image: "car2.jpg",
+      link: "audietronGT.html"
+    },
+    {
+      name: "BUGATTI TOURBILLON",
+      brand: "Buggati",
+      type: "Sports",
+      budget: "Above ₹10 crore",
+      image: "car3.jpg",
+      link: "buggatitourbillon.html"
+    },
+    {
+      name: "REVUELTO",
+      brand: "Lamborghini",
+      type: "Sports",
+      budget: "₹1-10 crore",
+      image: "car4.jpg",
+      link: "reveulto.html"
+    },
+    {
+      name: "KOENIGSEGG REGERA",
+      brand: "Koenigsegg",
+      type: "Sports",
+      budget: "Above ₹10 crore",
+      image: "car5.jpg",
+      link: "koenigsegg.html"
+    },
+    {
+      name: "MASERATI GRANTURISMO",
+      brand: "Maserati",
+      type: "Sports",
+      budget: "₹1-10 crore",
+      image: "car6.jpg",
+      link: "maserati.html"
+    },
+    {
+      name: "FERRARI SF90",
+      brand: "Ferrari",
+      type: "Sports",
+      budget: "₹1-10 crore",
+      image: "car7.jpg",
+      link: "ferrari.html"
+    },
+    {
+      name: "MCLAREN 720S",
+      brand: "mclaren",
+      type: "Sports",
+      budget: "₹1-10 crore",
+      image: "car8.jpg",
+      link: "mclaren.html"
+    }
+  ];
+
+  // Filter cars based on selections
+  const matches = cars.filter(car => {
+    const brandMatch = brand === "Select one" || car.brand.toLowerCase() === brand.toLowerCase();
+    const budgetMatch = budget === "Select range" || car.budget === budget;
+    const typeMatch = carType === "Select type" || car.type.toLowerCase() === carType.toLowerCase();
+    return brandMatch && budgetMatch && typeMatch;
+  });
+
+  // Handle special cases when only budget is selected
+  if (matches.length === 0 && brand === "Select one" && carType === "Select type" && budget !== "Select range") {
+    // Return specific representative car for each budget range
+    if (budget === "Below ₹1 crore") {
+      // Ensure we return Audi e-tron GT (not Porsche Taycan) for this range
+      const audi = cars.find(car => car.name === "AUDI e-tron GT" && car.budget === "Below ₹1 crore");
+      return audi || null;
+    } else if (budget === "₹1-10 crore") {
+      return cars.find(car => car.name === "MASERATI GRANTURISMO" && car.budget === "₹1-10 crore") || null;
+    } else if (budget === "Above ₹10 crore") {
+      return cars.find(car => car.name === "BUGATTI TOURBILLON" && car.budget === "Above ₹10 crore") || null;
+    }
+  }
+
+  // For all other cases, return first match or null
+  return matches.length > 0 ? matches[0] : null;
+}
     const chatContainer = document.getElementById('chatContainer');
     const chatHeader = document.getElementById('chatHeader');
     const closeChat = document.getElementById('closeChat');
@@ -296,7 +465,50 @@ document.addEventListener('DOMContentLoaded', function() {
         'register': 'You can register on our website by clicking the Register link in the top navigation bar.',
         'login': 'You can log in to your account by clicking the Login link in the top navigation bar.',
         'blog': 'Check out our blog by clicking the Blog link in the navigation menu for the latest news and updates from Xmotors.',
-        'cart': 'You can view your cart by clicking the cart icon in the navigation bar. Your current cart count is displayed next to the icon.'
+        'cart': 'You can view your cart by clicking the cart icon in the navigation bar. Your current cart count is displayed next to the icon.',
+        'electric vehicles': 'We offer a range of electric vehicles including the Porsche Taycan. They are eco-friendly and high performance.',
+        'luxury cars': 'Our luxury car selection includes brands like BMW, Audi, and Lamborghini. Would you like to know more about a specific model?',
+        'suv': 'We have several SUVs including the BMW XM. They offer spacious interiors and powerful performance.',
+        'sports cars': 'Our sports car lineup features the Dodge Demon and Lamborghini Aventador, perfect for high performance enthusiasts.',
+        'maintenance': 'Regular maintenance is important. Our service department offers oil changes, tire rotations, brake inspections, and more.',
+        'financing options': 'We provide flexible financing options with competitive rates. You can apply online or speak with a finance specialist.',
+        'trade-in process': 'Our trade-in process is simple. Bring your vehicle for an appraisal and get a fair market offer.',
+        'special offers': 'Check our website regularly for special offers and discounts on select vehicles and services.',
+        'customer support': 'Our customer support team is available Monday to Friday from 9am to 6pm. Contact us via phone or email for assistance.',
+        'test drive scheduling': 'You can schedule a test drive online or by calling our dealership during business hours.',
+        'extended warranty': 'We offer extended warranty plans for added peace of mind. Ask our sales team for details.',
+        'accessories': 'We have a variety of vehicle accessories including floor mats, roof racks, and custom wheels. Visit our Parts section.',
+        'trade-in value': 'To get an estimate of your trade-in value, please provide your vehicle details to our appraisal team.',
+        'delivery options': 'We offer home delivery and dealership pickup options for your convenience.',
+        'insurance': 'We can assist you with vehicle insurance options through our trusted partners.',
+        'roadside assistance': 'Our roadside assistance program is available 24/7 for emergencies and breakdowns.',
+        'loyalty program': 'Join our loyalty program to earn rewards and discounts on future purchases and services.',
+        'service appointment': 'Schedule your vehicle service appointment online or by contacting our service department.',
+        'vehicle history': 'We provide detailed vehicle history reports for all pre-owned vehicles in our inventory.',
+        'trade-in appraisal': 'Our experts will appraise your trade-in vehicle quickly and fairly during your visit.',
+        'contact sales': 'You can contact our sales team directly via phone or email for personalized assistance.',
+        'online chat': 'Use our online chat feature for instant answers to your questions during business hours.',
+        'test drive availability': 'Test drives are available by appointment. Please schedule in advance to ensure availability.',
+        'vehicle customization': 'We offer customization options including paint, wheels, and interior upgrades. Ask our sales team for details.',
+        'return policy': 'Please refer to our return policy on the website or contact customer service for more information.',
+        'privacy policy': 'Our privacy policy explains how we protect your personal information. It is available on our website.',
+        'terms and conditions': 'Review our terms and conditions for sales and services on our website.',
+        'careers': 'Interested in joining Xmotors? Check our Careers page for current job openings and application details.',
+        'events': 'We host events and promotions throughout the year. Check our website or subscribe to our newsletter for updates.',
+        'newsletter': 'Subscribe to our newsletter to receive the latest news, offers, and updates from Xmotors.',
+        'feedback': 'We value your feedback. Please use the Contact Us page to send us your comments and suggestions.',
+        'hours of operation': 'Our hours of operation are Monday to Friday 9am-8pm, Saturday 9am-6pm, and Sunday 11am-5pm.',
+        'directions': 'For directions to Xmotors, please visit our Contact page or use your preferred map application.',
+        'payment methods': 'We accept various payment methods including cash, credit cards, and financing options.',
+        'vehicle availability': 'Check our inventory online or contact us to confirm the availability of specific vehicles.',
+        'service specials': 'We offer service specials and discounts. Check our website or contact the service department for details.',
+        'gift cards': 'Gift cards are available for purchase and can be used towards vehicles, services, and parts.',
+        'vehicle recalls': 'We monitor vehicle recalls and notify customers. Contact us if you have concerns about your vehicle.',
+        'test drive requirements': 'A valid driver\'s license and insurance are required to take a test drive at Xmotors.',
+        'vehicle trade-in': 'Trade-in your current vehicle towards the purchase of a new or pre-owned vehicle at Xmotors.',
+        'extended service plans': 'Extended service plans are available for additional coverage beyond the manufacturer warranty.',
+        'vehicle financing application': 'Apply for vehicle financing online or in person with our finance specialists.',
+        'contact information': 'You can contact us at info@xmotors.com or call +1-800-555-1234 for general inquiries.'
     };
 
     chatBubble.addEventListener('click', function() {
@@ -397,152 +609,3 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 });
-
-
-  // Match Finder Functions
-  function openMatchFinder() {
-    document.getElementById('matchFinderPopup').style.display = 'block';
-  }
-
-  function closeMatchFinder() {
-    document.getElementById('matchFinderPopup').style.display = 'none';
-  }
-
-  document.getElementById("matchQuizForm").addEventListener("submit", function(e) {
-    e.preventDefault();
-    
-    const form = e.target;
-    const brand = form.querySelector('select:nth-of-type(1)').value;
-    const budget = form.querySelector('select:nth-of-type(2)').value;
-    const carType = form.querySelector('select:nth-of-type(3)').value;
-    
-    // Match logic based on selections
-    let matchedCar = findMatchingCar(brand, budget, carType);
-    
-    if (matchedCar) {
-      // Show match result
-      const matchContent = document.querySelector('.match-content');
-      matchContent.innerHTML = `
-        <span class="close-btn" onclick="closeMatchFinder()">&times;</span>
-        <h2>Your Perfect Match!</h2>
-        <div style="text-align: center; margin: 20px 0;">
-          <img src="img/${matchedCar.image}" alt="${matchedCar.name}" style="max-width: 100%; border-radius: 10px;">
-          <h3>${matchedCar.name}</h3>
-          <p>This ${matchedCar.type} matches your preferences for ${brand} in the ${budget} range.</p>
-          <div style="margin-top: 20px;">
-            <a href="${matchedCar.link}" class="btn" style="margin: 0 15px;">View Details</a>
-            <a href="#test-drive" class="btn" style="margin: 0 15px;" onclick="closeMatchFinder()">Book Test Drive</a>
-          </div>
-        </div>
-      `;
-    } else {
-      // No match found
-      const matchContent = document.querySelector('.match-content');
-      matchContent.innerHTML = `
-        <span class="close-btn" onclick="closeMatchFinder()">&times;</span>
-        <h2>No Exact Match Found</h2>
-        <p>We couldn't find a perfect match based on your criteria.</p>
-        <p>Our team can help you find alternatives - please contact us or check our full inventory.</p>
-        <div style="margin-top: 20px;">
-          <a href="#cars" class="btn" onclick="closeMatchFinder()">View All Cars</a>
-        </div>
-      `;
-    }
-  });
-
-  function findMatchingCar(brand, budget, carType) {
-    // Car database - would normally come from backend
-    const cars = [
-      {
-        name: "PORSCHE TAYCAN",
-        brand: "Porsche",
-        type: "Electric",
-        budget: "₹1-10 crore",
-        image: "car1.jpg",
-        link: "porshetaycan.html"
-      },
-      {
-        name: "AUDI e-tron GT",
-        brand: "Audi",
-        type: "Electric",
-        budget: "Below ₹1 crore",
-        image: "car2.jpg",
-        link: "audietronGT.html"
-      },
-      {
-        name: "BUGATTI TOURBILLON",
-        brand: "Buggati",
-        type: "Sports",
-        budget: "Above ₹10 crore",
-        image: "car3.jpg",
-        link: "buggatitourbillon.html"
-      },
-      {
-        name: "REVUELTO",
-        brand: "Lamborghini",
-        type: "Sports",
-        budget: "₹1-10 crore",
-        image: "car4.jpg",
-        link: "reveulto.html"
-      },
-      {
-        name: "KOENIGSEGG REGERA",
-        brand: "Koenigsegg",
-        type: "Sports",
-        budget: "Above ₹10 crore",
-        image: "car5.jpg",
-        link: "koenigsegg.html"
-      },
-      {
-        name: "MASERATI GRANTURISMO",
-        brand: "Maserati",
-        type: "Sports",
-        budget: "₹1-10 crore",
-        image: "car6.jpg",
-        link: "maserati.html"
-      },
-      {
-        name: "FERRARI SF90",
-        brand: "Ferrari",
-        type: "Sports",
-        budget: "₹1-10 crore",
-        image: "car7.jpg",
-        link: "ferrari.html"
-      },
-      {
-        name: "MCLAREN 720S",
-        brand: "mclaren",
-        type: "Sports",
-        budget: "₹1-10 crore",
-        image: "car8.jpg",
-        link: "mclaren.html"
-      }
-    ];
-
-    // Filter cars based on selections
-    const matches = cars.filter(car => {
-      const brandMatch = brand === "Select one" || car.brand.toLowerCase() === brand.toLowerCase();
-      const budgetMatch = budget === "Select range" || car.budget === budget;
-      const typeMatch = carType === "Select type" || car.type.toLowerCase() === carType.toLowerCase();
-      return brandMatch && budgetMatch && typeMatch;
-    });
-
-    // Handle special cases when only budget is selected
-    if (matches.length === 0 && brand === "Select one" && carType === "Select type" && budget !== "Select range") {
-      // Return specific representative car for each budget range
-      if (budget === "Below ₹1 crore") {
-        // Ensure we return Audi e-tron GT (not Porsche Taycan) for this range
-        const audi = cars.find(car => car.name === "AUDI e-tron GT" && car.budget === "Below ₹1 crore");
-        return audi || null;
-      } else if (budget === "₹1-10 crore") {
-        return cars.find(car => car.name === "MASERATI GRANTURISMO" && car.budget === "₹1-10 crore") || null;
-      } else if (budget === "Above ₹10 crore") {
-        return cars.find(car => car.name === "BUGATTI TOURBILLON" && car.budget === "Above ₹10 crore") || null;
-      }
-    }
-
-    // For all other cases, return first match or null
-    return matches.length > 0 ? matches[0] : null;
-  }
-
-

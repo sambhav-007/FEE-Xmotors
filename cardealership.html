@@ -6,6 +6,7 @@
     <title>Xmotors</title>
     <!-- link css -->
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="checkout.css">
     <style>
       /* Add just the hover effect styles */
       .navbar a {
@@ -98,7 +99,7 @@
         <h2>Match Finder</h2>
         <form id="matchQuizForm">
           <label>Preferred Brand:</label>
-          <select required>
+          <select name="brand" required>
             <option disabled selected>Select one</option>
             <option>Porsche</option>
             <option>Buggati</option>
@@ -111,7 +112,7 @@
           </select>
 
           <label>Budget Range:</label>
-            <select required>
+            <select name="budget" required>
             <option disabled selected>Select range</option>
             <option>Below ₹1 crore</option>
             <option>₹1-10 crore</option>
@@ -119,9 +120,8 @@
           </select>
 
           <label>Car Model</label>
-          <select required>
+          <select name="carType" required>
             <option disabled selected>Select type</option>
-            <option></option>
             <option>SUV</option>
             <option>Sports</option>
             <option>Electric</option>
