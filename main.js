@@ -35,10 +35,24 @@ document.addEventListener("DOMContentLoaded", () => {
     // Conversion rate (1 USD to INR)
     const usdToInr = 83.5;
 
-    // Function to convert USD to INR and format with ₹ symbol
+    // Function to convert USD to INR and format with ₹ symbol and Indian style commas
     function convertToRupees(usdAmount) {
         const inrAmount = usdAmount * usdToInr;
-        return `₹${inrAmount.toFixed(2)}`;
+
+        // Format number with Indian style commas
+        function formatIndianNumber(num) {
+            const numStr = num.toFixed(2).toString();
+            const [integerPart, decimalPart] = numStr.split('.');
+            let lastThree = integerPart.slice(-3);
+            let otherNumbers = integerPart.slice(0, -3);
+            if (otherNumbers !== '') {
+                lastThree = ',' + lastThree;
+            }
+            const formattedOtherNumbers = otherNumbers.replace(/\B(?=(\d{2})+(?!\d))/g, ',');
+            return formattedOtherNumbers + lastThree + '.' + decimalPart;
+        }
+
+        return `₹${formatIndianNumber(inrAmount)}`;
     }
 
     // Save cart to localStorage
